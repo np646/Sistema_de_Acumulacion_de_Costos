@@ -87,6 +87,24 @@ namespace SAC_Enci_Proyecto
         protected global::System.Web.UI.WebControls.TextBox txtCostoUnitario;
 
         /// <summary>
+        /// ddlMateriaPrima control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMateriaPrima;
+
+        /// <summary>
+        /// SqlDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+
+        /// <summary>
         /// cbIVA control.
         /// </summary>
         /// <remarks>
@@ -121,6 +139,24 @@ namespace SAC_Enci_Proyecto
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLegrid;
+
+        /// <summary>
+        /// txtMprid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMprid;
+
+        /// <summary>
+        /// btnBuscarMpr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarMpr;
 
         /// <summary>
         /// btnRegresar control.

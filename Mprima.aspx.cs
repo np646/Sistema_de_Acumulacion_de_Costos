@@ -16,6 +16,7 @@ namespace SAC_Enci_Proyecto
         //A esta pagina solo se accede a traves de generar pedido
         Acc datos = new Acc();
         string oprid = "";
+        string mprid = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             btnGuardar.Visible = btnCancelar.Visible = false;
@@ -25,6 +26,8 @@ namespace SAC_Enci_Proyecto
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+
+
             try
             {
                 string tipo = (ddlTipo.SelectedItem.Value);
@@ -37,9 +40,17 @@ namespace SAC_Enci_Proyecto
                     string legrid = dsDatos.Tables[0].Rows[0]["legr_id"].ToString();
 
                     dsDatos = datos.insertDetalleOrden(Int32.Parse(oprid), Int32.Parse(legrid));
+                   
+                    if (tipo.Equals("MP"))
+                    {
+                        //para guardar en la salidas del kardex de esa materia prima
+                        DataSet dsDatos1 = datos.insertSalidaKardex(Int32.Parse(txtMprid.Text), Double.Parse(txtCantidad.Text));
+                        
+                    }
                     System.Windows.Forms.MessageBox.Show("Se ha ingresado los datos");
                     GridView1.DataBind();
                     txtLegrid.Text = txtDetalle.Text = txtRuc.Text = txtAutorizacion.Text = txtProveedor.Text = txtCantidad.Text = txtCostoUnitario.Text = "";
+
                 }
                 else
                 {
@@ -219,6 +230,24 @@ namespace SAC_Enci_Proyecto
         protected void txtCantidad_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnBuscarMpr_Click(object sender, EventArgs e)
+        {
+            string mprCodigo = ddlMateriaPrima.SelectedItem.Value;
+
+            DataSet dsDatos = datos.selectMateriaPrimaPorCodigo(mprCodigo);
+            if (dsDatos.Tables[0].Rows.Count > 0)
+            {
+                txtMprid.Text = dsDatos.Tables[0].Rows[0]["mpr_id"].ToString();
+                txtDetalle.Text = dsDatos.Tables[0].Rows[0]["mpr_detalle"].ToString();
+                txtCostoUnitario.Text = dsDatos.Tables[0].Rows[0]["mpr_cunitario"].ToString();
+                txtRuc.Text = dsDatos.Tables[0].Rows[0]["prv_ruc"].ToString();
+                txtAutorizacion.Text = dsDatos.Tables[0].Rows[0]["prv_autorizacion"].ToString();
+                txtProveedor.Text = dsDatos.Tables[0].Rows[0]["prv_nombre"].ToString();
+            }
+
+        
         }
     }
     }

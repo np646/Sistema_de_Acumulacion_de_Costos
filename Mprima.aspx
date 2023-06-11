@@ -84,7 +84,7 @@
                                     <label>Tipo:</label>
                                 </td>
                                 <td style="width:100px;">
-                                    <asp:DropDownList ID="ddlTipo" runat="server">
+                                    <asp:DropDownList ID="ddlTipo" runat="server" style="width: 220px">
                                         <asp:ListItem Value="MP">Materia prima directa</asp:ListItem>
                                         <asp:ListItem Value="MO">Mano de obra directa</asp:ListItem>
                                         <asp:ListItem Value="CIF">Costos indirectos de fabricación</asp:ListItem>
@@ -106,9 +106,12 @@
                                     <asp:TextBox ID="txtCostoUnitario" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
                                 </td>
                                 <td style="width:auto;">
-                                    &nbsp;</td>
+                                    Código:</td>
                                 <td style="width:100px;">
-                                    &nbsp;</td>
+                                    <asp:DropDownList ID="ddlMateriaPrima" runat="server" DataSourceID="SqlDataSource1" DataTextField="mpr_codigo" DataValueField="mpr_codigo">
+                                    </asp:DropDownList>
+                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:bdd_enciConnectionString %>" ProviderName="<%$ ConnectionStrings:bdd_enciConnectionString.ProviderName %>" SelectCommand="SP_SELECT_MATERIAPRIMA" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="auto-style4">
@@ -128,15 +131,17 @@
                                     <asp:TextBox ID="txtLegrid" runat="server" Visible="False"></asp:TextBox>
                                 </td>
                                 <td style="width:auto;">
-                                    &nbsp;</td>
+                                    <asp:TextBox ID="txtMprid" runat="server" Visible="False"></asp:TextBox>
+                                </td>
                                 <td style="width:100px;">
-                                    &nbsp;</td>
+                                    <asp:Button ID="btnBuscarMpr" runat="server" OnClick="btnBuscarMpr_Click" Text="Buscar" />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="text-center mb-3">
                         <asp:Button ID="btnRegresar" runat="server" OnClick="btnRegresar_Click" class="btn btn-warning" Text="Regresar" />
-                        <asp:Button ID="btnIngresar" runat="server" Text="Ingreso" class="btn btn-warning" OnClick="btnIngresar_Click"/>
+                        <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" class="btn btn-warning" OnClick="btnIngresar_Click"/>
                         <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" class="btn btn-warning" Text="Guardar" />
                         <asp:Button ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" class="btn btn-warning" Text="Cancelar" />
                     </div>
@@ -157,11 +162,17 @@
                             <asp:BoundField DataField="iva_valor" HeaderText="Valor" SortExpression="iva_valor" />
                             <asp:BoundField DataField="egr_total" HeaderText="Total" SortExpression="egr_total" />
                             <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar" 
-                                ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card"/>
+                                ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
+<ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
+                            </asp:ButtonField>
                             <asp:ButtonField ButtonType="Button" CommandName="eliminar" Text="Eliminar" 
-                                ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card"/>
+                                ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
+<ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
+                            </asp:ButtonField>
                             <asp:ButtonField ButtonType="Button" CommandName="detalle" Text="Detalle" 
-                                ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card"/>
+                                ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
+<ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
+                            </asp:ButtonField>
                         </Columns>
                         <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
                         <HeaderStyle BackColor="goldenrod" Font-Bold="True" ForeColor="White" />

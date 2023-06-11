@@ -466,6 +466,77 @@ namespace SAC_Enci_Proyecto
             return dsDatos;
         }
 
+        ///////20230527/////////////
+        
+        public DataSet insertProveedor(string strRUC, string strAutorizacion, string strNombre)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_INSERT_PROVEEDOR");
+            conectar.AsignarParametros("ruc", strRUC, DbType.String);
+            conectar.AsignarParametros("autorizacion", strAutorizacion, DbType.String);
+            conectar.AsignarParametros("nombre", strNombre, DbType.String);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+        // mprcodigo varchar(45), mprdetalle varchar(45), in prvid int
+
+        public DataSet insertMateriaPrima(string strCodigo, string strDetalle, int prvId)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_INSERT_MATERIAPRIMA");
+            conectar.AsignarParametros("mprcodigo", strCodigo, DbType.String);
+            conectar.AsignarParametros("mprDetalle", strDetalle, DbType.String);
+            conectar.AsignarParametros("prvid", prvId.ToString(), DbType.Int32);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+
+        ///KARDEX///
+        ///in mprid int, in cantidad double, in cunitario double
+        public DataSet insertEntradaKardex(int intMprid, double dblCantidad, double dblCunitario)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_INSERT_ENTRADA_KARDEX");
+            conectar.AsignarParametros("mprid", intMprid.ToString(), DbType.Int32);
+            conectar.AsignarParametros("cantidad", dblCantidad.ToString(), DbType.Double);
+            conectar.AsignarParametros("cunitario", dblCunitario.ToString(), DbType.Double);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+
+        public DataSet insertSalidaKardex(int intMprid, double dblCantidad)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_INSERT_SALIDA_KARDEX");
+            conectar.AsignarParametros("mprid", intMprid.ToString(), DbType.Int32);
+            conectar.AsignarParametros("cantidad", dblCantidad.ToString(), DbType.Double);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+
+        public DataSet selectMateriaPrimaPorID(int intMprid)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_SELECT_MATERIAPRIMAPORID");
+            conectar.AsignarParametros("mprid", intMprid.ToString(), DbType.Int32);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+
+        public DataSet selectMateriaPrimaPorCodigo(string strMprCodigo)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_SELECT_MATERIAPRIMAPORCODIGO");
+            conectar.AsignarParametros("mprcodigo", strMprCodigo, DbType.String);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
     }
 }
 

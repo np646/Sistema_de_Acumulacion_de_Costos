@@ -14,6 +14,24 @@ namespace SAC_Enci_Proyecto
         protected void Page_Load(object sender, EventArgs e)
         {
             btnGuardar.Visible = btnCancelar.Visible = false;
+
+            //para abrir la página de egresos desde ingresarmateriaprima 
+            if (!string.IsNullOrEmpty(Session["mpridcompra"].ToString()))
+            {
+                txtDetalle.Text = "SI FUNCIONA";
+
+                DataSet dsDatos = datos.selectMateriaPrimaPorID(Int32.Parse(Session["mpridcompra"].ToString()));
+
+                if (dsDatos.Tables[0].Rows.Count > 0)
+                {
+                    txtDetalle.Text = dsDatos.Tables[0].Rows[0]["mpr_detalle"].ToString();
+                    txtRuc.Text = dsDatos.Tables[0].Rows[0]["prv_ruc"].ToString();
+                    txtAutorizacion.Text = dsDatos.Tables[0].Rows[0]["prv_autorizacion"].ToString();
+                    txtProveedor.Text = dsDatos.Tables[0].Rows[0]["prv_nombre"].ToString();
+                }
+
+
+            }
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -27,6 +45,7 @@ namespace SAC_Enci_Proyecto
                 string tipo = (ddlTipo.SelectedItem.Value);
 
                 DataSet dsDatos = datos.insertListaEgresos(txtDetalle.Text, txtRuc.Text, txtAutorizacion.Text, txtProveedor.Text, tipo, Int32.Parse(txtCantidad.Text), Double.Parse(txtCostoUnitario.Text), Double.Parse(txtIVA.Text));
+                DataSet dsDatos1 = datos.insertEntradaKardex(Int32.Parse(Session["mpridcompra"].ToString()), Double.Parse(txtCantidad.Text), Double.Parse(txtCostoUnitario.Text));
 
                 if (dsDatos.Tables[0].Rows.Count > 0)
                 {
@@ -54,6 +73,11 @@ namespace SAC_Enci_Proyecto
 
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
+            //si se ingresa desde ingresarmateriaprima 
+            if (!string.IsNullOrEmpty(Session["mpridcompra"].ToString()))
+            {
+                Response.Redirect("Kardex.aspx");
+            }
             Response.Redirect("Menu2.aspx");
         }
 

@@ -11,7 +11,7 @@ namespace SAC_Enci_Proyecto
 {
 
 
-    public partial class Menu
+    public partial class Menu4
     {
 
         /// <summary>
@@ -33,57 +33,48 @@ namespace SAC_Enci_Proyecto
         protected global::System.Web.UI.WebControls.Label lblBienvenido;
 
         /// <summary>
-        /// Control ibtnRegistro.
+        /// Control btnIngresarPrv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ibtnRegistro;
+        protected global::System.Web.UI.WebControls.ImageButton btnIngresarPrv;
 
         /// <summary>
-        /// Control ibtnIniciar.
+        /// Control btnIngresarMprima.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ibtnIniciar;
+        protected global::System.Web.UI.WebControls.ImageButton btnIngresarMprima;
 
         /// <summary>
-        /// Control ibtnVentas.
+        /// Control btnVerPrv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ibtnVentas;
+        protected global::System.Web.UI.WebControls.ImageButton btnVerPrv;
 
         /// <summary>
-        /// Control ibtnIva.
+        /// Control btnVerMPrima.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ibtnIva;
+        protected global::System.Web.UI.WebControls.ImageButton btnVerMPrima;
 
         /// <summary>
-        /// Control btnBodega.
+        /// Control btnRegresar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnBodega;
-
-        /// <summary>
-        /// Control btnCerarSesion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerarSesion;
+        protected global::System.Web.UI.WebControls.Button btnRegresar;
     }
 }

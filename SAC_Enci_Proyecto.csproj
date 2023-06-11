@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="IngresarMateriaPrima.aspx" />
     <Content Include="BusquedaOrden.aspx" />
     <Content Include="BusquedaPedido.aspx" />
     <Content Include="Cliente.aspx" />
@@ -91,9 +92,12 @@
     <Content Include="Images\logo2.png" />
     <Content Include="Images\mprima.png" />
     <Content Include="Images\pedidos.png" />
+    <Content Include="IngresarProveedor.aspx" />
     <Content Include="IniciarSesion.aspx" />
+    <Content Include="Kardex.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="Menu3.aspx" />
+    <Content Include="Menu4.aspx" />
     <Content Include="Mprima.aspx" />
     <Content Include="Orden.aspx" />
     <Content Include="Menu2.aspx" />
@@ -101,8 +105,10 @@
     <Content Include="RegistroUsuarios.aspx" />
     <Content Include="ReporteDetalle.aspx" />
     <Content Include="Ventas.aspx" />
+    <Content Include="VerMateriaPrima.aspx" />
     <Content Include="VerOrdenes.aspx" />
     <Content Include="VerPedidos.aspx" />
+    <Content Include="VerProveedores.aspx" />
     <Content Include="Web.config" />
     <Content Include="Index.aspx" />
     <Content Include="DetallesCosto.aspx" />
@@ -111,6 +117,13 @@
   <ItemGroup>
     <Compile Include="Acc.cs" />
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="IngresarMateriaPrima.aspx.cs">
+      <DependentUpon>IngresarMateriaPrima.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IngresarMateriaPrima.aspx.designer.cs">
+      <DependentUpon>IngresarMateriaPrima.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BusquedaOrden.aspx.cs">
       <DependentUpon>BusquedaOrden.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -147,12 +160,26 @@
       <DependentUpon>CrearCuenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Encriptar.cs" />
+    <Compile Include="IngresarProveedor.aspx.cs">
+      <DependentUpon>IngresarProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IngresarProveedor.aspx.designer.cs">
+      <DependentUpon>IngresarProveedor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="IniciarSesion.aspx.cs">
       <DependentUpon>IniciarSesion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="IniciarSesion.aspx.designer.cs">
       <DependentUpon>IniciarSesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Kardex.aspx.cs">
+      <DependentUpon>Kardex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Kardex.aspx.designer.cs">
+      <DependentUpon>Kardex.aspx</DependentUpon>
     </Compile>
     <Compile Include="Log.cs" />
     <Compile Include="Menu.aspx.cs">
@@ -168,6 +195,13 @@
     </Compile>
     <Compile Include="Menu3.aspx.designer.cs">
       <DependentUpon>Menu3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Menu4.aspx.cs">
+      <DependentUpon>Menu4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu4.aspx.designer.cs">
+      <DependentUpon>Menu4.aspx</DependentUpon>
     </Compile>
     <Compile Include="Mprima.aspx.cs">
       <DependentUpon>Mprima.aspx</DependentUpon>
@@ -240,6 +274,13 @@
     <Compile Include="Egresos.aspx.designer.cs">
       <DependentUpon>Egresos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VerMateriaPrima.aspx.cs">
+      <DependentUpon>VerMateriaPrima.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerMateriaPrima.aspx.designer.cs">
+      <DependentUpon>VerMateriaPrima.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VerOrdenes.aspx.cs">
       <DependentUpon>VerOrdenes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -253,6 +294,13 @@
     </Compile>
     <Compile Include="VerPedidos.aspx.designer.cs">
       <DependentUpon>VerPedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerProveedores.aspx.cs">
+      <DependentUpon>VerProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerProveedores.aspx.designer.cs">
+      <DependentUpon>VerProveedores.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

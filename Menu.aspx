@@ -53,6 +53,9 @@
                         <td class="text-center">
                             <asp:ImageButton ID="ibtnIva" runat="server" Height="120px" ImageUrl="~/Images/icono4.png" Width="120px" OnClick="ibtnIva_Click" />
                             <center><span style="color: #2f3d4e; font-size:20px;">Configurar IVA</span></center></td>
+                        <td class="text-center">
+                            <asp:ImageButton ID="btnBodega" runat="server" OnClick="btnBodega_Click" Height="120px" Width="120px" ImageUrl="~/Images/bodega.png" />
+                            <center><span style="color: #2f3d4e; font-size:20px;">Bodega</span></center></td>
                     </tr>
                 </table>
                 <br />

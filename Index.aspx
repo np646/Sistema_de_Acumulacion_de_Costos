@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="SAC_Enci_Proyecto.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="SAC_Enci_Proyecto.WebForm1" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,7 @@
     <title>Inicio</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/Intro.css">
+    <link rel="stylesheet" href="CSS/Intro.css">
     
 
     <style type="text/css">
@@ -55,8 +55,7 @@
 
     <footer>
         <div class="content flex">
-            <h3>Sistema de Acumulaci&oacute;n de Costos</h3><br />
-            
+            <h3>Sistema de Acumulaci&oacute;n de Costos</h3>
         </div>
     </footer>
         </form>

@@ -44,5 +44,10 @@ namespace SAC_Enci_Proyecto
         {
             Response.Redirect("ConfigurarIVA.aspx");
         }
+
+        protected void btnBodega_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Menu4.aspx");
+        }
     }
 }
