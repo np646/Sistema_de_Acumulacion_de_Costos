@@ -17,10 +17,7 @@
         .auto-style1 {
             color: black;
         }
-        .auto-style4 {
-            width: 337px;
-        }
-    </style>
+        </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -52,10 +49,6 @@
             <div class="form-menu">
                 <table style="width:100%;">
                     <tr>
-                        <td class="text-center">
-                            <asp:ImageButton ID="ibtnMprima" runat="server" Height="120px" ImageUrl="~/Images/mprima.png" Width="120px" OnClick="ibtnMprima_Click"  />
-                            <br /><center><h3 class="auto-style1">Egresos</h3></center>
-                        </td>
 
                         <td class="text-center">
                             <asp:ImageButton ID="ibtnPedido" runat="server" Height="120px" ImageUrl="~/Images/pedidos.png" Width="150px" OnClick="ibtnPedido_Click"  />

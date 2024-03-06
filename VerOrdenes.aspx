@@ -13,6 +13,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"/>
     <link rel="stylesheet" href="css/Estilo.css"/>
+    <style type="text/css">
+        .auto-style4 {
+            color: goldenrod;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -35,9 +40,9 @@
         <section>
             <div class="mt-3 justify-content-center" style="display: flex">
                 <div class="col-auto mb-3 border card border mt-5 ms-5 p-2 rounded">
-                    <h2 class="text-center mb-3" style="color: goldenrod;">ÓRDENES DE PRODUCCIÓN</h2>
+                    <h2 class="auto-style4">HOJAS DE COSTOS</h2>
                     <center>
-                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="opr_id" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1" CellSpacing="2" OnRowCommand="GridView1_RowCommand">
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="opr_id" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1" CellSpacing="2" OnRowCommand="GridView1_RowCommand" AllowPaging="True">
                             <Columns>
                                 <asp:BoundField DataField="opr_id" HeaderText="Orden" InsertVisible="False" ReadOnly="True" SortExpression="opr_id" />
                                 <asp:BoundField DataField="itm_id" HeaderText="Item" SortExpression="itm_id" />
@@ -48,8 +53,10 @@
                                 <asp:BoundField DataField="itm_fechainicio" HeaderText="Fecha inicio" SortExpression="itm_fechainicio" />
                                 <asp:BoundField DataField="itm_fechafinalizacion" HeaderText="Fecha fin" SortExpression="itm_fechafinalizacion" />
                                 <asp:BoundField DataField="itm_numpedido" HeaderText="Pedido" SortExpression="itm_numpedido" />
-                                <asp:ButtonField ButtonType="Button" CommandName="ver" Text="Ver orden" 
-                                    ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card"/>
+                                <asp:ButtonField ButtonType="Button" CommandName="ver" Text="Hoja de costos" 
+                                    ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
+<ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
+                                </asp:ButtonField>
                             </Columns>
                             <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
                             <HeaderStyle BackColor="goldenrod" Font-Bold="True" ForeColor="White" />

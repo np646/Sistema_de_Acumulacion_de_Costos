@@ -21,8 +21,6 @@ namespace SAC_Enci_Proyecto
                 int crow = Convert.ToInt32(e.CommandArgument.ToString());
 
                 Session["itemid"] = GridView1.Rows[crow].Cells[0].Text;
-                // txtitemid.Text = Session["itemid"].ToString();
-
                 Response.Redirect("Orden.aspx");
             }
         }
@@ -35,6 +33,11 @@ namespace SAC_Enci_Proyecto
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Menu3.aspx");
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

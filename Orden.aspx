@@ -25,6 +25,13 @@
         .auto-style8 {
             width: 467px;
         }
+        .auto-style9 {
+            height: 25px;
+        }
+        .auto-style10 {
+            width: 467px;
+            height: 25px;
+        }
     </style>
 
 
@@ -54,15 +61,15 @@
 
             <div class="menu3">
                 <center>
-                    <h3>ORDEN DE PRODUCCIÓN</h3>
+                    <h3>HOJA DE COSTOS</h3>
                 </center>
                 <table class="table table-light table-hover table-borderless">
                     <thead></thead>
                     <tbody>
                         <tr>
                             <td colspan="4">
-                                <label>Fecha de expedición de la orden:</label>
-                                <asp:TextBox ID="txtFechaExpeOrden" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning" ReadOnly="True"></asp:TextBox>
+                                <label>Fecha de expedición:</label>
+                                <asp:TextBox ID="txtFechaExpeOrden" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning" ReadOnly="True" OnTextChanged="txtFechaExpeOrden_TextChanged"></asp:TextBox>
                             </td>
                             <td colspan="1">
                                 <label>Número:</label>
@@ -91,7 +98,7 @@
                         </tr>
                         <tr>
                             <td class="auto-style7">
-                                <label>Fecha de pnicio:</label>
+                                <label>Fecha de inicio:</label>
                             </td>
                             <td class="auto-style8">
                                 <asp:TextBox ID="txtFechaInicio" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning" ReadOnly="True"></asp:TextBox>
@@ -105,27 +112,34 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style7">
-                                <label>Numero de pedido:</label>
-                            </td>
-                            <td class="auto-style8">
+                            <td class="auto-style9">
+                                <label>Número de pedido:</label></td>
+                            <td class="auto-style10">
                                 <asp:TextBox ID="txtNumPedido" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning" ReadOnly="True"></asp:TextBox>
+                            </td>
+                            <td class="auto-style9"></td>
+                            <td class="auto-style9">
+                            </td>
+                            <td class="auto-style9">
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <div class="text-center mt-3 mb-3">
+                <div class="text-center mt-4 mb-3">
                     <center>
-                        <asp:GridView ID="GridView1" runat="server" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" DataKeyNames="legr_id" DataSourceID="SqlDataSource1" CellSpacing="2" OnRowCommand="GridView1_RowCommand">
+                        <div>
+                            <asp:Button ID="btnVerTotal"  Class="btn btn-warning" runat="server" OnClick="btnVerTotal_Click" Text="Ver gastos totales" />
+                            <asp:Button ID="btnMateriaPrima"  Class="btn btn-warning" runat="server" OnClick="btnMateriaPrima_Click" Text="Materia prima" />
+                            <asp:Button ID="btnEgresos"  Class="btn btn-warning" runat="server" OnClick="btnEgresos_Click" Text="Otros egresos" />
+                        </div>
+                        <br />
+                        <asp:GridView ID="GridView1" runat="server" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" DataKeyNames="legr_id" DataSourceID="SqlDataSource1" CellSpacing="2" OnRowCommand="GridView1_RowCommand" AllowPaging="True">
                             <Columns>
-                                <asp:BoundField DataField="legr_id" HeaderText="#" InsertVisible="False" ReadOnly="True" SortExpression="legr_id" />
+                                <asp:BoundField DataField="legr_id" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="legr_id" />
                                 <asp:BoundField DataField="legr_fecha" HeaderText="Fecha" SortExpression="legr_fecha" />
                                 <asp:BoundField DataField="egr_detalle" HeaderText="Detalle" SortExpression="egr_detalle" />
-                                <asp:BoundField DataField="prv_ruc" HeaderText="Identificación" SortExpression="prv_ruc" />
-                                <asp:BoundField DataField="prv_autorizacion" HeaderText="Autorización" SortExpression="prv_autorizacion" />
-                                <asp:BoundField DataField="prv_nombre" HeaderText="Proveedor" SortExpression="prv_nombre" />
-                                <asp:BoundField DataField="egr_clasificacion" HeaderText="Tipo" SortExpression="egr_clasificacion" />
+                                <asp:BoundField DataField="egr_clasificacion" HeaderText="Clasificación" SortExpression="egr_clasificacion" />
                                 <asp:BoundField DataField="egr_cantidad" HeaderText="Cantidad" SortExpression="egr_cantidad" />
                                 <asp:BoundField DataField="egr_costounitario" HeaderText="Costo unitario" SortExpression="egr_costounitario" />
                                 <asp:BoundField DataField="egr_costototal" HeaderText="Costo total" SortExpression="egr_costototal" />
@@ -142,35 +156,44 @@
                             <SortedDescendingCellStyle BackColor="#F1E5CE" />
                             <SortedDescendingHeaderStyle BackColor="#93451F" />
                         </asp:GridView>
-                    </center>
-
-                </div>
-
-                <div class="mt-2" style="display: flex">
-                    <div class="me-5 mb-2 p-3">
-                        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" BackColor="goldenrod" BorderColor="white" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2">
+                        <br />
+                        <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataKeyNames="lmp_id" DataSourceID="SqlDataSource3" AllowPaging="True" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" OnRowDataBound="GridView3_RowDataBound">
                             <Columns>
-                                <asp:BoundField DataField="egr_clasificacion" HeaderText="Clasificación" SortExpression="egr_clasificacion" />
-                                <asp:BoundField DataField="egr_total" HeaderText="Total" SortExpression="egr_total" />
+                                <asp:BoundField DataField="lmp_id" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="lmp_id" />
+                                <asp:BoundField DataField="lmp_fecha" HeaderText="Fecha" SortExpression="lmp_fecha" />
+                                <asp:BoundField DataField="mpr_codigo" HeaderText="Código" SortExpression="mpr_codigo" />
+                                <asp:BoundField DataField="mpr_detalle" HeaderText="Detalle" SortExpression="mpr_detalle" />
+                                <asp:BoundField DataField="lmp_cantidad" HeaderText="Cantidad" SortExpression="lmp_cantidad" />
+                                <asp:BoundField DataField="lmp_cunitario" HeaderText="Costo unitario" SortExpression="lmp_cunitario" />
+                                <asp:BoundField DataField="lmp_costototal" HeaderText="Costo total" SortExpression="lmp_costototal" />
+                                <asp:BoundField DataField="lmp_total" HeaderText="Total" SortExpression="lmp_total" />
+                                <asp:BoundField DataField="lmp_dev" HeaderText="Es devolución" SortExpression="lmp_dev" />
                             </Columns>
-                            <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
+                            <FooterStyle BackColor="goldenrod" ForeColor="#8C4510" />
                             <HeaderStyle BackColor="goldenrod" Font-Bold="True" ForeColor="White" />
                             <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
-                            <RowStyle BackColor="#FFF7E7" ForeColor="#8C4510" />
+                            <RowStyle BackColor="#F8F9FA" ForeColor="black" />
                             <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
                             <SortedAscendingCellStyle BackColor="#FFF1D4" />
                             <SortedAscendingHeaderStyle BackColor="#B95C30" />
                             <SortedDescendingCellStyle BackColor="#F1E5CE" />
                             <SortedDescendingHeaderStyle BackColor="#93451F" />
                         </asp:GridView>
-                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:bdd_enciConnectionString %>" ProviderName="<%$ ConnectionStrings:bdd_enciConnectionString.ProviderName %>" SelectCommand="SP_SELECT_COSTOEGRESOPOROP" SelectCommandType="StoredProcedure">
+                        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:bdd_enciConnectionString %>" ProviderName="<%$ ConnectionStrings:bdd_enciConnectionString.ProviderName %>" SelectCommand="SP_SELECT_LISTAEGRESOMPPOROP" SelectCommandType="StoredProcedure">
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="txtNumeroOP" Name="oprid" PropertyName="Text" Type="Int32" />
                             </SelectParameters>
                         </asp:SqlDataSource>
+                    </center>
+
+                </div>
+
+                <div class="mt-2" style="display: flex">
+                    <div class="me-5 mb-2 p-3">
+                        <br />
                     </div>
                     <div class="ms-5 mb-2 p-3">
-                        <table class="table table-light table-hover table-borderless">
+                        <table class="table table-light table-hover table-borderless" id="tblTotal">
 
                             <tr>
                                 <td>
@@ -209,9 +232,12 @@
                     </div>
                     
                 </div>
-
                 <div class="text-center mb-3">
-                    <asp:Button ID="btnAgregarMP" Class="btn btn-warning" runat="server" OnClick="btnAgregarMP_Click" Text="Modificar contenidos" />
+                    <asp:Button ID="btnAgregarEgresos"  Class="btn btn-warning" runat="server" OnClick="btnAgregarEgresos_Click" Text="Agregar otros egresos" />
+                    <asp:Button ID="btnAgregarMP"  Class="btn btn-warning" runat="server" OnClick="btnAgregarMP_Click1" Text="Agregar materia prima" />
+                </div>
+                <div class="text-center mb-3">
+                    
                     <asp:Button ID="btnImprimir" Class="btn btn-warning" runat="server" OnClick="btnImprimir_Click" Text="Imprimir" />
                 </div>
 

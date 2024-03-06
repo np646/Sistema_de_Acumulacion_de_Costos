@@ -73,6 +73,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Compras.aspx" />
+    <Content Include="Devolucion.aspx" />
     <Content Include="IngresarMateriaPrima.aspx" />
     <Content Include="BusquedaOrden.aspx" />
     <Content Include="BusquedaPedido.aspx" />
@@ -82,7 +84,6 @@
     <Content Include="CSS\Estilo.css" />
     <Content Include="CSS\Intro.css" />
     <Content Include="fondo.jpg" />
-    <Content Include="Images\background-footer.png" />
     <Content Include="Images\background-footer.svg" />
     <Content Include="Images\background-footer2.png" />
     <Content Include="Images\fondito.png" />
@@ -111,12 +112,25 @@
     <Content Include="VerProveedores.aspx" />
     <Content Include="Web.config" />
     <Content Include="Index.aspx" />
-    <Content Include="DetallesCosto.aspx" />
     <Content Include="Egresos.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acc.cs" />
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="Compras.aspx.cs">
+      <DependentUpon>Compras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Compras.aspx.designer.cs">
+      <DependentUpon>Compras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Devolucion.aspx.cs">
+      <DependentUpon>Devolucion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Devolucion.aspx.designer.cs">
+      <DependentUpon>Devolucion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="IngresarMateriaPrima.aspx.cs">
       <DependentUpon>IngresarMateriaPrima.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -259,13 +273,6 @@
     </Compile>
     <Compile Include="Ventas.aspx.designer.cs">
       <DependentUpon>Ventas.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DetallesCosto.aspx.cs">
-      <DependentUpon>DetallesCosto.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DetallesCosto.aspx.designer.cs">
-      <DependentUpon>DetallesCosto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Egresos.aspx.cs">
       <DependentUpon>Egresos.aspx</DependentUpon>

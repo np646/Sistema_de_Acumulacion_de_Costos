@@ -53,13 +53,14 @@
                         </tbody>
                     </table>
                     <div class="text-center mb-2">
-                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-warning" OnClick="btnBuscar_Click" Text="Buscar" />
+                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-warning" OnClick="btnBuscar_Click" Text="Buscar"/>
                         <asp:Button ID="btnRegresar" runat="server" class="btn btn-warning" OnClick="btnRegresar_Click" Text="Regresar" />
 
                     </div>
                 </div>
-                <div class="col-auto mb-3 mt-5 ms-5">
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="opr_id" DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2">
+            </div>
+            <center>
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="opr_id" DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" AllowPaging="True">
                         <Columns>
                             <asp:BoundField DataField="opr_id" HeaderText="#" InsertVisible="False" ReadOnly="True" SortExpression="opr_id" />
                             <asp:BoundField DataField="itm_id" HeaderText="Item" SortExpression="itm_id" />
@@ -70,8 +71,6 @@
                             <asp:BoundField DataField="itm_fechainicio" HeaderText="Inicio" SortExpression="itm_fechainicio" />
                             <asp:BoundField DataField="itm_fechafinalizacion" HeaderText="Finalización" SortExpression="itm_fechafinalizacion" />
                             <asp:BoundField DataField="itm_numpedido" HeaderText="Pedido" SortExpression="itm_numpedido" />
-                            <asp:ButtonField ButtonType="Button" CommandName="ver" Text="Ver" ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
-                            </asp:ButtonField>
                         </Columns>
                         <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
                         <HeaderStyle BackColor="goldenrod" Font-Bold="True" ForeColor="White" />
@@ -89,8 +88,7 @@
                             <asp:ControlParameter ControlID="txtFechaHasta" Name="fin" PropertyName="Text" Type="String" />
                         </SelectParameters>
                     </asp:SqlDataSource>
-                    </div>
-            </div>
+                    </center>
         </section>
 
     </form>

@@ -8,60 +8,66 @@ using System.Data;
 using System.Data.Common;
 using System.Configuration;
 using System.Text;
+using System.Drawing;
+
 
 namespace SAC_Enci_Proyecto
 {
     public partial class Mprima : System.Web.UI.Page
     {
         //A esta pagina solo se accede a traves de generar pedido
+        double iva = 0;
         Acc datos = new Acc();
         string oprid = "";
         string mprid = "";
+        string mensaje = "Ingrese los datos correctamente.";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             btnGuardar.Visible = btnCancelar.Visible = false;
             oprid = Session["oprid"].ToString();
-           
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-
-
-            try
+            if (txtCantidad.Text != "" && txtFecha.Text != "")
             {
-                string tipo = (ddlTipo.SelectedItem.Value);
-                DataSet dsDatos = datos.insertListaEgresos(txtDetalle.Text, txtRuc.Text, txtAutorizacion.Text, txtProveedor.Text, tipo, Int32.Parse(txtCantidad.Text), Double.Parse(txtCostoUnitario.Text), Double.Parse(txtIVA.Text));
-
-
-                if (dsDatos.Tables[0].Rows.Count > 0)
+                try
                 {
-                    dsDatos = datos.selectUltimaListaEgresos();
-                    string legrid = dsDatos.Tables[0].Rows[0]["legr_id"].ToString();
+                    //DataSet dsDatos = datos.insertListaEgresosmp(Double.Parse(txtIVA.Text), Int32.Parse(txtMprid.Text), Int32.Parse(txtCantidad.Text), Double.Parse(txtCostoUnitario.Text),1, txtFecha.Text);
+                    //el iva va con 1 porque en los calculos ya se calcula con el valor unitario en el kardex
+                    DataSet dsDatos = datos.insertListaEgresosmp(1, Int32.Parse(txtMprid.Text), Int32.Parse(txtCantidad.Text), Double.Parse(txtCostoUnitario.Text), 1, txtFecha.Text, "NO");
 
-                    dsDatos = datos.insertDetalleOrden(Int32.Parse(oprid), Int32.Parse(legrid));
-                   
-                    if (tipo.Equals("MP"))
+                    if (dsDatos.Tables[0].Rows.Count > 0)
                     {
+                        dsDatos = datos.selectUltimaListaEgresosMP();
+                        string lmpid = dsDatos.Tables[0].Rows[0]["lmp_id"].ToString();
+                        dsDatos = datos.insertDetalleOrdenMP(Int32.Parse(oprid), Int32.Parse(lmpid));
                         //para guardar en la salidas del kardex de esa materia prima
-                        DataSet dsDatos1 = datos.insertSalidaKardex(Int32.Parse(txtMprid.Text), Double.Parse(txtCantidad.Text));
-                        
-                    }
-                    System.Windows.Forms.MessageBox.Show("Se ha ingresado los datos");
-                    GridView1.DataBind();
-                    txtLegrid.Text = txtDetalle.Text = txtRuc.Text = txtAutorizacion.Text = txtProveedor.Text = txtCantidad.Text = txtCostoUnitario.Text = "";
+                        DataSet dsDatos1 = datos.insertSalidaKardex(Int32.Parse(txtMprid.Text), Double.Parse(txtCantidad.Text), txtFecha.Text, Int32.Parse(oprid));
 
+                        GridView1.DataBind();
+                        txtLegrid.Text = txtDetalle.Text = txtRuc.Text = txtProveedor.Text = txtCantidad.Text = txtCostoUnitario.Text = txtCantidadBodega.Text = "";
+
+                        mensaje = "alert('Se ha ingresado los datos.');";
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
+                    }
+                    else
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
+                    }
                 }
-                else
+                catch (Exception a)
                 {
-                    System.Windows.Forms.MessageBox.Show("Ingrese correctamente los datos");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
                 }
             }
-            catch
+            else
             {
-                System.Windows.Forms.MessageBox.Show("Ingrese correctamente los datos");
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
             }
-            }
+
+        }
 
 
 
@@ -82,135 +88,39 @@ namespace SAC_Enci_Proyecto
 
         protected void cbIVA_CheckedChanged(object sender, EventArgs e)
         {
-            if (!cbIVA.Checked)
-            {
-               // txtIVA.Visible = false;
-                txtIVA.Text = "0";
-            }
-            else
-            {
-                DataSet dsDatos = datos.selectIVAActual();
-                if (dsDatos.Tables[0].Rows.Count > 0)
-                {
-                    txtIVA.Text = dsDatos.Tables[0].Rows[0]["iva_valor"].ToString();
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("No se ha definido un valor de IVA.");
-                }
-            }
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "eliminar")
-            {
-               
-
-                int crow = Convert.ToInt32(e.CommandArgument.ToString());
-
-                txtLegrid.Text = GridView1.Rows[crow].Cells[0].Text;
-                DataSet dsDatos = datos.deleteLegreso(Int32.Parse(txtLegrid.Text));
-
-                System.Windows.Forms.MessageBox.Show("Se ha eliminado el item.");
-                GridView1.DataBind();
-            }
-            else if (e.CommandName == "detalle")
+            if (e.CommandName == "devolucion")
             {
                 int crow = Convert.ToInt32(e.CommandArgument.ToString());
 
-                Session["legrid"] = GridView1.Rows[crow].Cells[0].Text;
-                txtProveedor.Text = Session["legrid"].ToString();
-                Session["pagina"] = "Mprima.aspx";
-                Response.Redirect("DetallesCosto.aspx");
-            }
-            else if (e.CommandName == "editar")
-            {
-                int crow = Convert.ToInt32(e.CommandArgument.ToString());
-
-
-                txtLegrid.Text = GridView1.Rows[crow].Cells[0].Text;
-                txtDetalle.Text = GridView1.Rows[crow].Cells[2].Text;
-                txtRuc.Text = GridView1.Rows[crow].Cells[3].Text;
-                txtAutorizacion.Text = GridView1.Rows[crow].Cells[4].Text;
-                txtProveedor.Text = GridView1.Rows[crow].Cells[5].Text;
-                txtCantidad.Text = GridView1.Rows[crow].Cells[7].Text;
-                txtCostoUnitario.Text = GridView1.Rows[crow].Cells[8].Text;
-
-                ddlTipo.SelectedItem.Value = GridView1.Rows[crow].Cells[6].Text;
-                //para que al editar se seleccione el tipo
-                switch (ddlTipo.SelectedItem.Value)
-                {
-                    case "MP":
-                        ddlTipo.SelectedItem.Text = "Materia prima directa";
-                        break;
-                    case "MO":
-                        ddlTipo.SelectedItem.Text = "Mano de obra directa";
-                        break;
-                    case "CIF":
-                        ddlTipo.SelectedItem.Text = "Costos indirectos de fabricación";
-                        break;
-                    case "GA":
-                        ddlTipo.SelectedItem.Text = "Gastos administrativos";
-                        break;
-                    case "GV":
-                        ddlTipo.SelectedItem.Text = "Gastos de ventas";
-                        break;
-                    case "GF":
-                        ddlTipo.SelectedItem.Text = "Gastos financieros";
-                        break;
-
-                    default:
-                        // code block
-                        break;
-                }
-
-                DataSet dsDatos = datos.selectProveedorPorLegrid(Int32.Parse(txtLegrid.Text));
-
-                if (dsDatos.Tables[0].Rows.Count > 0)
-                {
-                    txtPrvid.Text = dsDatos.Tables[0].Rows[0]["prv_id"].ToString();
-
-                }
-
-                btnGuardar.Visible = btnCancelar.Visible = true;
-                btnRegresar.Visible = btnIngresar.Visible = false;
-
+                Session["lmpid"] = GridView1.Rows[crow].Cells[0].Text;
+                Response.Redirect("Devolucion.aspx");
             }
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
-                string tipo = (ddlTipo.SelectedItem.Value);
-                DataSet dsDatos = datos.updateLegreso(txtDetalle.Text, txtRuc.Text, txtAutorizacion.Text, txtProveedor.Text, Int32.Parse(txtCantidad.Text), Double.Parse(txtCostoUnitario.Text), Double.Parse(txtIVA.Text), tipo, Int32.Parse(txtLegrid.Text), Int32.Parse(txtPrvid.Text));
-
+                DataSet dsDatos = datos.updateLegresomp(txtDetalle.Text, txtRuc.Text, "esta parte hay que quitar", txtProveedor.Text, Int32.Parse(txtCantidad.Text), Double.Parse(txtCostoUnitario.Text), 1, Int32.Parse(txtLegrid.Text), Int32.Parse(txtPrvid.Text), 1);
 
                 if (dsDatos.Tables[0].Rows.Count > 0)
                 {
-                    /*DataSet dsDatos4 = datos.selectTotalPorPedido(Int32.Parse(txtNumPedido.Text));
-                    if (!String.IsNullOrEmpty(dsDatos4.Tables[0].Rows[0]["suma"].ToString()))
-                    {
-
-                        txtTotal.Text = dsDatos4.Tables[0].Rows[0]["suma"].ToString();
-
-                        dsDatos4 = datos.updatePedido(Int32.Parse(txtNumPedido.Text), Double.Parse(txtTotal.Text));
-
-                    }*/
-
                     System.Windows.Forms.MessageBox.Show("Se han guardado los cambios.");
                 }
 
                 GridView1.DataBind();
                 btnGuardar.Visible = btnCancelar.Visible = false;
                 btnRegresar.Visible = btnIngresar.Visible = true;
-                txtLegrid.Text = txtDetalle.Text = txtRuc.Text = txtAutorizacion.Text = txtProveedor.Text = txtCantidad.Text = txtCostoUnitario.Text = "";
+                txtLegrid.Text = txtDetalle.Text = txtRuc.Text = txtProveedor.Text = txtCantidad.Text = txtCostoUnitario.Text = "";
             }
             catch
             {
-                System.Windows.Forms.MessageBox.Show("Ingrese correctamente los datos");
-            }
+                System.Windows.Forms.MessageBox.Show("Ingrese los datos correctamente.");
+            }*/
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -219,17 +129,16 @@ namespace SAC_Enci_Proyecto
             {
                 btnGuardar.Visible = btnCancelar.Visible = false;
                 btnRegresar.Visible = btnIngresar.Visible = true;
-                txtLegrid.Text = txtDetalle.Text = txtRuc.Text = txtAutorizacion.Text = txtProveedor.Text = txtCantidad.Text = txtCostoUnitario.Text = "";
+                txtLegrid.Text = txtDetalle.Text = txtRuc.Text = txtProveedor.Text = txtCantidad.Text = txtCostoUnitario.Text = "";
             }
             catch
             {
-                System.Windows.Forms.MessageBox.Show("Ingrese correctamente los datos");
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
             }
         }
 
         protected void txtCantidad_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         protected void btnBuscarMpr_Click(object sender, EventArgs e)
@@ -243,11 +152,23 @@ namespace SAC_Enci_Proyecto
                 txtDetalle.Text = dsDatos.Tables[0].Rows[0]["mpr_detalle"].ToString();
                 txtCostoUnitario.Text = dsDatos.Tables[0].Rows[0]["mpr_cunitario"].ToString();
                 txtRuc.Text = dsDatos.Tables[0].Rows[0]["prv_ruc"].ToString();
-                txtAutorizacion.Text = dsDatos.Tables[0].Rows[0]["prv_autorizacion"].ToString();
                 txtProveedor.Text = dsDatos.Tables[0].Rows[0]["prv_nombre"].ToString();
+                txtCantidadBodega.Text = dsDatos.Tables[0].Rows[0]["mpr_cantidad"].ToString();
             }
 
-        
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            // para cambiar el color de una fila si es devolución
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                // int esdevolucion = Convert.ToInt32(GridView1.Rows[i].Cells[8].Text);
+                if (GridView1.Rows[i].Cells[8].Text == "SI")
+                {
+                    GridView1.Rows[i].BackColor = Color.Silver;
+                }
+            }
         }
     }
-    }
+}

@@ -19,6 +19,21 @@
         .auto-style4 {
             width: 134px;
         }
+        .auto-style5 {
+            width: 134px;
+            height: 87px;
+        }
+        .auto-style6 {
+            height: 87px;
+        }
+        .auto-style7 {
+            width: 100px;
+            height: 87px;
+        }
+        .auto-style8 {
+            width: auto;
+            height: 87px;
+        }
     </style>
 </head>
 <body>
@@ -48,94 +63,85 @@
         <section>
             <div class="container-fluid p-3 m-auto mt-4" >
                 <div class="menu2">
-                    <center><h2>INFORMACIÓN DE INSUMOS</h2></center> 
+                    <center><h2>INFORMACIÓN</h2>
+                    </center>
 
                     <table class="table table-light table-hover table-borderless">     
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td class="auto-style4">
+                                <td class="auto-style5">Código:</td>
+                                <td class="auto-style6">
+                                    <asp:DropDownList Class="border-end-0 border-start-0 border-top-0 border-warning" ID="ddlMateriaPrima" runat="server" DataSourceID="SqlDataSource1" DataTextField="mpr_codigo" DataValueField="mpr_codigo">
+                                    </asp:DropDownList>
+                                    <label>
+                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:bdd_enciConnectionString %>" ProviderName="<%$ ConnectionStrings:bdd_enciConnectionString.ProviderName %>" SelectCommand="SP_SELECT_MATERIAPRIMA" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+                                    </label>
+                                    <label>
+                                    <asp:Button ID="btnBuscarMpr" runat="server" class="btn " OnClick="btnBuscarMpr_Click" Text="🔎" />
+                                    </label>
+                                </td>
+
+                                <td class="auto-style5">
                                     <label>Detalle:</label>
                                 </td>
-                                <td style="width:100px;">
-                                    <asp:TextBox ID="txtDetalle" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
+                                <td class="auto-style7">
+                                    <asp:TextBox ID="txtDetalle" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning" ReadOnly="True"></asp:TextBox>
                                 </td>
-                                <td style="width:auto;">
+                                <td class="auto-style8">
                                     <label>ID-RUC:</label>
                                 </td>
-                                <td style="width:100px;">
-                                    <asp:TextBox ID="txtRuc" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
+                                <td class="auto-style7">
+                                    <asp:TextBox ID="txtRuc" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning" ReadOnly="True"></asp:TextBox>
                                 </td>
-                                <td style="width:auto;">
-                                    <label>Autorización:</label>
-                                </td>
-                                <td style="width:100px;">
-                                    <asp:TextBox ID="txtAutorizacion" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
-                                </td>
-                                <td style="width:auto;">
-                                    <label>Proveedor:</label>
-                                </td>
-                                <td style="width:100px;">
-                                    <asp:TextBox ID="txtProveedor" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
+                                <td class="auto-style8">
+                                    <label>Proveedor:</label></td>
+                                <td class="auto-style7">
+                                    <asp:TextBox ID="txtProveedor" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning" ReadOnly="True"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="auto-style4">
-                                    <label>Tipo:</label>
-                                </td>
+                                    <label>Cantidad bodega:</label></td>
                                 <td style="width:100px;">
-                                    <asp:DropDownList ID="ddlTipo" runat="server" style="width: 220px">
-                                        <asp:ListItem Value="MP">Materia prima directa</asp:ListItem>
-                                        <asp:ListItem Value="MO">Mano de obra directa</asp:ListItem>
-                                        <asp:ListItem Value="CIF">Costos indirectos de fabricación</asp:ListItem>
-                                        <asp:ListItem Value="GA">Gastos administrativos</asp:ListItem>
-                                        <asp:ListItem Value="GV">Gastos de ventas</asp:ListItem>
-                                        <asp:ListItem Value="GF">Gastos financieros</asp:ListItem>
-                                    </asp:DropDownList>
+                                    <asp:TextBox ID="txtCantidadBodega" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning" ReadOnly="True"></asp:TextBox>
                                 </td>
-                                <td style="width:auto;">
-                                    <label>Cantidad:</label>
-                                </td>
-                                <td style="width:100px;">
+                                <td>
+                                    <label>Cantidad:</label></td>
+                                <td>
                                     <asp:TextBox ID="txtCantidad" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
                                 </td>
                                 <td style="width:auto;">
-                                    <label>Costo unitario:</label>
-                                </td>
+                                    <label>Costo unitario:</label></td>
                                 <td style="width:100px;">
-                                    <asp:TextBox ID="txtCostoUnitario" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
-                                </td>
+                                    <asp:TextBox ID="txtCostoUnitario" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning" ReadOnly="True"></asp:TextBox>
+                                     </td>
                                 <td style="width:auto;">
-                                    Código:</td>
+                                    <label>Fecha:</label></td>
                                 <td style="width:100px;">
-                                    <asp:DropDownList ID="ddlMateriaPrima" runat="server" DataSourceID="SqlDataSource1" DataTextField="mpr_codigo" DataValueField="mpr_codigo">
-                                    </asp:DropDownList>
-                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:bdd_enciConnectionString %>" ProviderName="<%$ ConnectionStrings:bdd_enciConnectionString.ProviderName %>" SelectCommand="SP_SELECT_MATERIAPRIMA" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+                                    <asp:TextBox ID="txtFecha" Class="border-end-0 border-start-0 border-top-0 border-warning" placeholder="aaaa/mm/dd" TextMode="Date" runat="server"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="auto-style4">
-                                    <label>Lleva IVA: </label></td>
-                                <td style="width:100px;">
-                                    <asp:CheckBox ID="cbIVA" runat="server" AutoPostBack="True" OnCheckedChanged="cbIVA_CheckedChanged" />
-                                </td>
-                                <td style="width:auto;">
-                                    <label>IVA:</label></td>
-                                <td style="width:100px;">
-                                    <asp:TextBox ID="txtIVA" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning">0</asp:TextBox>
-                                </td>
-                                <td style="width:auto;">
                                     <asp:TextBox ID="txtPrvid" runat="server" Visible="False"></asp:TextBox>
-                                </td>
+                                    </td>
                                 <td style="width:100px;">
                                     <asp:TextBox ID="txtLegrid" runat="server" Visible="False"></asp:TextBox>
                                 </td>
-                                <td style="width:auto;">
-                                    <asp:TextBox ID="txtMprid" runat="server" Visible="False"></asp:TextBox>
+                                <td class="auto-style4">
+                                    <asp:TextBox ID="txtMprid" runat="server" Visible="False" Width="130px"></asp:TextBox>
                                 </td>
                                 <td style="width:100px;">
-                                    <asp:Button ID="btnBuscarMpr" runat="server" OnClick="btnBuscarMpr_Click" Text="Buscar" />
-                                </td>
+                                    &nbsp;</td>
+                                <td style="width:auto;">
+                                    &nbsp;</td>
+                                <td style="width:100px;">
+                                    &nbsp;</td>
+                                <td style="width:auto;">
+                                    &nbsp;</td>
+                                <td style="width:100px;">
+                                    &nbsp;</td>
                             </tr>
                         </tbody>
                     </table>
@@ -147,30 +153,18 @@
                     </div>
 
                     <center>
-                    <asp:GridView ID="GridView1" runat="server" CellPadding="3" AutoGenerateColumns="False" DataKeyNames="legr_id" DataSourceID="BDD_ENCI" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CellSpacing="2" OnRowCommand="GridView1_RowCommand">
+                    <asp:GridView ID="GridView1" runat="server" CellPadding="3" AutoGenerateColumns="False" DataSourceID="BDD_ENCI" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CellSpacing="2" OnRowCommand="GridView1_RowCommand" DataKeyNames="lmp_id" AllowPaging="True" OnRowDataBound="GridView1_RowDataBound">
                         <Columns>
-                            <asp:BoundField DataField="legr_id" HeaderText="#" InsertVisible="False" ReadOnly="True" SortExpression="legr_id" />
-                            <asp:BoundField DataField="legr_fecha" HeaderText="Fecha" SortExpression="legr_fecha" />
-                            <asp:BoundField DataField="egr_detalle" HeaderText="Detalle" SortExpression="egr_detalle" />
-                            <asp:BoundField DataField="prv_ruc" HeaderText="ID-RUC" SortExpression="prv_ruc" />
-                            <asp:BoundField DataField="prv_autorizacion" HeaderText="Autorización" SortExpression="prv_autorizacion" />
-                            <asp:BoundField DataField="prv_nombre" HeaderText="Proveedor" SortExpression="prv_nombre" />
-                            <asp:BoundField DataField="egr_clasificacion" HeaderText="Clasificación" SortExpression="egr_clasificacion" />
-                            <asp:BoundField DataField="egr_cantidad" HeaderText="Cantidad" SortExpression="egr_cantidad" />
-                            <asp:BoundField DataField="egr_costounitario" HeaderText="Costo unitario" SortExpression="egr_costounitario" />
-                            <asp:BoundField DataField="egr_costototal" HeaderText="Costo total" SortExpression="egr_costototal" />
-                            <asp:BoundField DataField="iva_valor" HeaderText="Valor" SortExpression="iva_valor" />
-                            <asp:BoundField DataField="egr_total" HeaderText="Total" SortExpression="egr_total" />
-                            <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar" 
-                                ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
-<ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
-                            </asp:ButtonField>
-                            <asp:ButtonField ButtonType="Button" CommandName="eliminar" Text="Eliminar" 
-                                ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
-<ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
-                            </asp:ButtonField>
-                            <asp:ButtonField ButtonType="Button" CommandName="detalle" Text="Detalle" 
-                                ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
+                            <asp:BoundField DataField="lmp_id" HeaderText="ID" SortExpression="lmp_id" InsertVisible="False" ReadOnly="True" />
+                            <asp:BoundField DataField="lmp_fecha" HeaderText="Fecha" SortExpression="lmp_fecha" />
+                            <asp:BoundField DataField="mpr_codigo" HeaderText="Código" SortExpression="mpr_codigo" />
+                            <asp:BoundField DataField="mpr_detalle" HeaderText="Detalle" SortExpression="mpr_detalle" />
+                            <asp:BoundField DataField="lmp_cantidad" HeaderText="Cantidad" SortExpression="lmp_cantidad" />
+                            <asp:BoundField DataField="lmp_cunitario" HeaderText="Costo unitario" SortExpression="lmp_cunitario" />
+                            <asp:BoundField DataField="lmp_costototal" HeaderText="Costo total" SortExpression="lmp_costototal" />
+                            <asp:BoundField DataField="lmp_total" HeaderText="Total" SortExpression="lmp_total" />
+                            <asp:BoundField DataField="lmp_dev" HeaderText="Es devolución" SortExpression="lmp_dev" />
+                            <asp:ButtonField ButtonType="Button" CommandName="devolucion" HeaderText="Acción" Text="Devolución" ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
 <ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
                             </asp:ButtonField>
                         </Columns>
@@ -185,7 +179,7 @@
                         <SortedDescendingHeaderStyle BackColor="#93451F" />
                     </asp:GridView>
 
-                    <asp:SqlDataSource ID="BDD_ENCI" runat="server" ConnectionString="<%$ ConnectionStrings:bdd_enciConnectionString %>" ProviderName="<%$ ConnectionStrings:bdd_enciConnectionString.ProviderName %>" SelectCommand="SP_SELECT_LISTAEGRESOPOROP" SelectCommandType="StoredProcedure">
+                    <asp:SqlDataSource ID="BDD_ENCI" runat="server" ConnectionString="<%$ ConnectionStrings:bdd_enciConnectionString %>" ProviderName="<%$ ConnectionStrings:bdd_enciConnectionString.ProviderName %>" SelectCommand="SP_SELECT_LISTAEGRESOMPPOROP" SelectCommandType="StoredProcedure">
                         <SelectParameters>
                             <asp:SessionParameter Name="oprid" SessionField="oprid" Type="Int32" />
                         </SelectParameters>

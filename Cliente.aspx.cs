@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Windows.Forms;
 
 namespace SAC_Enci_Proyecto
 {
@@ -12,71 +13,52 @@ namespace SAC_Enci_Proyecto
     {
         Acc datos = new Acc();
         string idCliente = "";
+        string mensaje = "Ingrese los datos correctamente.";
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnPedido_Click(object sender, EventArgs e)
         {
-
-            // idCliente = txtCliid.Text;
-            // Session["cliid"] = txtCliid.Text;
-            //DataSet dsDatos = datos.insertPedido(Int32.Parse(idCliente));
-
-            //if (dsDatos.Tables[0].Rows.Count > 0)
-            //{
-            //DataSet dsDatos1 = datos.selectUltimoPedido();
-            //if (dsDatos1.Tables[0].Rows.Count > 0)
-            ////{
-
-
-            //Session["ultimopedidoid"] =  dsDatos.Tables[0].Rows[0]["ped_id"].ToString();
-            //Session["pedido"] =
-
-            //System.Windows.Forms.MessageBox.Show("Se ha creado un nuevo pedido.");
-            //Response.Redirect("Pedidos.aspx");
-
-            // }
-
-            //}
-            //else
-            //{
-            //System.Windows.Forms.MessageBox.Show("Debe seleccionar un cliente.");
-            //}
-
         }
 
         protected void btnIngresar_Click1(object sender, EventArgs e)
         {
-            try
+            if (txtNombre.Text != "" && txtIdentificacion.Text != "")
             {
-                DataSet dsDatos = datos.insertCliente(txtNombre.Text, txtIdentificacion.Text);
+                try
+                {
+                    DataSet dsDatos = datos.insertCliente(txtNombre.Text, txtIdentificacion.Text);
 
-                if (dsDatos.Tables[0].Rows.Count > 0)
-                {
-                    System.Windows.Forms.MessageBox.Show("Se ha creado el cliente.");
-                    idCliente = dsDatos.Tables[0].Rows[0]["cli_id"].ToString();
-                    GridView1.DataBind();
+                    if (dsDatos.Tables[0].Rows.Count > 0)
+                    {
+                        idCliente = dsDatos.Tables[0].Rows[0]["cli_id"].ToString();
+                        GridView1.DataBind();
+                        txtNombre.Text = txtIdentificacion.Text = "";
+
+                        mensaje = "alert('Se ha creado el cliente.');";
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
+                    }
+                    else
+                    {
+                        mensaje = "alert('No existe el cliente.');";
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
+                    }
                 }
-                else
+                catch
                 {
-                    System.Windows.Forms.MessageBox.Show("No existe el cliente.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
                 }
             }
-            catch
+            else
             {
-                System.Windows.Forms.MessageBox.Show("Ingrese correctamente los datos");
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
             }
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           /* idCliente = GridView1.SelectedRow.Cells[0].Text.ToString();
-            DataSet dsDatos = datos.selectCliente(idCliente);
-
-            txtCliid.Text = dsDatos.Tables[0].Rows[0]["cli_id"].ToString();
-           */
+            //ahora se uiliza rowcommand
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -90,72 +72,45 @@ namespace SAC_Enci_Proyecto
             }
             else if (e.CommandName == "generar")
             {
-                /*
-
-                                int crow = Convert.ToInt32(e.CommandArgument.ToString());
-
-                                idCliente = GridView1.Rows[crow].Cells[0].Text;
-                                DataSet dsDatos = datos.selectCliente(idCliente);
-
-                                txtCliid.Text = dsDatos.Tables[0].Rows[0]["cli_id"].ToString();
-
-
-
-                                idCliente = txtCliid.Text;
-                                Session["cliid"] = txtCliid.Text;
-                                DataSet dsDatos2 = datos.insertPedido(Int32.Parse(idCliente));
-
-                                if (dsDatos2.Tables[0].Rows.Count > 0)
-                                {
-                                    System.Windows.Forms.MessageBox.Show("Se ha creado un nuevo pedido.");
-                                    Response.Redirect("Pedidos.aspx");
-                                }
-                                else
-                                {
-                                    System.Windows.Forms.MessageBox.Show("Debe seleccionar un cliente.");
-                                }
-                /*/
-
                 int crow = Convert.ToInt32(e.CommandArgument.ToString());
-
-                idCliente = txtCliid.Text= GridView1.Rows[crow].Cells[0].Text;
+                idCliente = txtCliid.Text = GridView1.Rows[crow].Cells[0].Text;
                 Session["cliid"] = txtCliid.Text;
-                DataSet dsDatos = datos.insertPedido(Int32.Parse(idCliente));
-
-                if (dsDatos.Tables[0].Rows.Count > 0)
+                if (txtFecha.Text == "")
                 {
-                    DataSet dsDatos1 = datos.selectUltimoPedido();
-                    if (dsDatos1.Tables[0].Rows.Count > 0)
-                    {
-
-
-                        Session["pedido"] =  dsDatos1.Tables[0].Rows[0]["ped_id"].ToString();
-                       
-
-                        System.Windows.Forms.MessageBox.Show("Se ha creado un nuevo pedido.");
-                        Response.Redirect("Pedidos.aspx");
-
-                    }
-
+                    mensaje = "alert('Debe ingresar una fecha.');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("Debe seleccionar un cliente.");
+                    DataSet dsDatos = datos.insertPedido(Int32.Parse(idCliente), txtFecha.Text);
+
+                    if (dsDatos.Tables[0].Rows.Count > 0)
+                    {
+                        DataSet dsDatos1 = datos.selectUltimoPedido();
+                        if (dsDatos1.Tables[0].Rows.Count > 0)
+                        {
+                            Session["pedido"] = dsDatos1.Tables[0].Rows[0]["ped_id"].ToString();
+                            mensaje = "alert('Se ha creado un nuevo pedido.'); window.location='Pedidos.aspx';";
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
+                            
+                        }
+                    }
+                    else
+                    {
+                        mensaje = "alert('Debe seleccionar un cliente.');";
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
+                    }
                 }
             }
             else if (e.CommandName == "editar")
             {
                 int crow = Convert.ToInt32(e.CommandArgument.ToString());
-
-                txtCliid.Text= GridView1.Rows[crow].Cells[0].Text;
+                txtCliid.Text = GridView1.Rows[crow].Cells[0].Text;
                 DataSet dsDatos = datos.selectCliente(txtCliid.Text);
-
                 txtNombre.Text = dsDatos.Tables[0].Rows[0]["cli_nombre"].ToString();
-
                 txtIdentificacion.Text = dsDatos.Tables[0].Rows[0]["cli_identificacion"].ToString();
-
                 btnGuardar.Visible = true;
-               
+                btnIngresar.Visible = false;
             }
         }
 
@@ -164,21 +119,19 @@ namespace SAC_Enci_Proyecto
             try
             {
                 DataSet dsDatos1 = datos.updateCliente(txtNombre.Text, txtIdentificacion.Text, Int32.Parse(txtCliid.Text));
-
-
                 if (dsDatos1.Tables[0].Rows.Count > 0)
                 {
-                    System.Windows.Forms.MessageBox.Show("Se han guardado los cambios.");
+                    mensaje = "alert('Se han guardado los cambios.');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
                 }
                 btnGuardar.Visible = false;
+                btnIngresar.Visible = true;
                 GridView1.DataBind();
             }
             catch
-            {
-                System.Windows.Forms.MessageBox.Show("Ingrese correctamente los datos");
+            {               
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
             }
         }
-
-       
     }
 }

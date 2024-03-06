@@ -58,8 +58,7 @@
                             <tr>
                                 <td><label style="font-weight:600; color:goldenrod;">Clasificación: </label></td>
                                 <td>
-                                    <asp:DropDownList ID="ddlTipo" runat="server" Width="70%">
-                                        <asp:ListItem Value="MP">Materia prima directa</asp:ListItem>
+                                    <asp:DropDownList ID="ddlTipo" runat="server" Width="70%" Class="border-end-0 border-start-0 border-top-0 border-warning">
                                         <asp:ListItem Value="MO">Mano de obra directa</asp:ListItem>
                                         <asp:ListItem Value="CIF">Costos indirectos de fabricación</asp:ListItem>
                                         <asp:ListItem Value="GA">Gastos administrativos</asp:ListItem>
@@ -82,7 +81,7 @@
                     <div class="text-center mb-3">
                         <asp:Button ID="btnMostrarV" runat="server" Text="Mostrar" Class="btn btn-warning" OnClick="btnMostrarV_Click" />
                         <asp:Button ID="btnExcel" runat="server" OnClick="btnExcel_Click" Class="btn btn-warning" Text="Exportar a Excel" />
-                        <asp:Button ID="btnImprimir" runat="server" Class="btn btn-warning" Text="Imprimir" />
+                        <asp:Button ID="btnImprimir" runat="server" Class="btn btn-warning" Text="Imprimir" OnClick="btnImprimir_Click" />
                     </div>
 
                     <div class="text-center">
@@ -92,7 +91,7 @@
                 </div>
                 <div class="col-auto mb-3 mt-5 ms-5 p-2">
                     <center>
-                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="legr_id" DataSourceID="SqlDataSource2" BackColor="goldenrod" BorderColor="white" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2">
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="legr_id" DataSourceID="SqlDataSource2" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" AllowPaging="True">
                             <Columns>
                                 <asp:BoundField DataField="legr_id" HeaderText=" # " InsertVisible="False" ReadOnly="True" SortExpression="legr_id" />
                                 <asp:BoundField DataField="egr_total" HeaderText=" Total " SortExpression="egr_total" />

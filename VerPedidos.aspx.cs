@@ -15,10 +15,7 @@ namespace SAC_Enci_Proyecto
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*
-            Session["pedidoid"] = GridView1.SelectedRow.Cells[0].Text;
-            GridView2.DataBind();
-           */
+            //ahora se utiliza rowcommand
         }
 
         protected void btnRegresar_Click(object sender, EventArgs e)
@@ -30,7 +27,6 @@ namespace SAC_Enci_Proyecto
         {
             Session["ultimopedidoid"] = GridView2.SelectedRow.Cells[6].Text;
             Session["itemid"] = GridView2.SelectedRow.Cells[0].Text;
-
             Response.Redirect("Orden.aspx");
         }
 
@@ -39,7 +35,6 @@ namespace SAC_Enci_Proyecto
             if (e.CommandName == "seleccionar")
             {
                 int crow = Convert.ToInt32(e.CommandArgument.ToString());
-
                 Session["pedidoid"] = GridView1.Rows[crow].Cells[0].Text;
                 Session["pedido"] = GridView1.Rows[crow].Cells[0].Text;
                 GridView2.DataBind();
@@ -47,11 +42,8 @@ namespace SAC_Enci_Proyecto
             else if (e.CommandName == "ir")
             {
                 int crow = Convert.ToInt32(e.CommandArgument.ToString());
-
                 Session["pedid"] = GridView1.Rows[crow].Cells[0].Text;
-
                 Session["pedido"] = GridView1.Rows[crow].Cells[0].Text;
-
                 Response.Redirect("Pedidos.aspx");
             }
         }

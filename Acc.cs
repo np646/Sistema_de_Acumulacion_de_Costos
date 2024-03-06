@@ -6,11 +6,11 @@ using System.Data.Common;
 using System.Configuration;
 using MySql.Data.MySqlClient;
 
-namespace SAC_Enci_Proyecto 
+namespace SAC_Enci_Proyecto
 {
     public class Acc
     {
-        AccesoDatos conectar = new AccesoDatos("bdd_enciConnectionString"); 
+        AccesoDatos conectar = new AccesoDatos("bdd_enciConnectionString");
         public DataSet insertUsuario(string strNombre, string strContrasena)
         {
             conectar.Conectar();
@@ -41,18 +41,18 @@ namespace SAC_Enci_Proyecto
             conectar.Desconectar();
             return dsDatos;
         }
-		public DataSet updateRegistro()
+        public DataSet updateRegistro()
         {
-			//se llama esta función cuando el usuario cierra sesión
-			
+            //se llama esta función cuando el usuario cierra sesión
+
             conectar.Conectar();
             conectar.CrearComando("SP_UPDATE_REGISTRO");
             DataSet dsDatos = conectar.EjecutarDataset();
             conectar.Desconectar();
             return dsDatos;
         }
-		
-		public DataSet selectRegistros()
+
+        public DataSet selectRegistros()
         {
             conectar.Conectar();
             conectar.CrearComando("SP_SELECT_REGISTROS");
@@ -101,8 +101,8 @@ namespace SAC_Enci_Proyecto
             conectar.Desconectar();
             return dsDatos;
         }
-		
-		public DataSet selectReporteGastos(string strFechaInicio, string strFechaFin, string strClasificacion)
+
+        public DataSet selectReporteGastos(string strFechaInicio, string strFechaFin, string strClasificacion)
         {
             conectar.Conectar();
             conectar.CrearComando("SP_SELECT_REPORTEGASTOS");
@@ -114,11 +114,12 @@ namespace SAC_Enci_Proyecto
             return dsDatos;
         }
 
-        public DataSet insertPedido(int intCliid )
+        public DataSet insertPedido(int intCliid, string strFecha)
         {
             conectar.Conectar();
             conectar.CrearComando("SP_INSERT_PEDIDO");
             conectar.AsignarParametros("cliid", intCliid.ToString(), DbType.Int32);
+            conectar.AsignarParametros("fecha", strFecha, DbType.String);
             DataSet dsDatos = conectar.EjecutarDataset();
             conectar.Desconectar();
             return dsDatos;
@@ -133,7 +134,7 @@ namespace SAC_Enci_Proyecto
             return dsDatos;
         }
 
-        public DataSet insertItem(int intCliid,int intCantidad, string strDetalle, double dblPvp, string strFechainicio, string strFechafin, string strDescripcion, int intNumpedido, double dblTotal)
+        public DataSet insertItem(int intCliid, int intCantidad, string strDetalle, double dblPvp, string strFechainicio, string strFechafin, string strDescripcion, int intNumpedido, double dblTotal)
         {
             conectar.Conectar();
             conectar.CrearComando("SP_INSERT_ITEM");
@@ -170,27 +171,51 @@ namespace SAC_Enci_Proyecto
             return dsDatos;
         }
 
-        public DataSet insertListaEgresos(string strDetalle, string strRuc, string strAutorizacion, string strNombre, string strClasificacion, int intCantidad, double dblCunitario, double dblIVA)
-        { 
+        public DataSet insertListaEgresos(string strDetalle, string strClasificacion, int intCantidad, double dblCunitario, double dblIVA, string strFecha)
+        {
             conectar.Conectar();
             conectar.CrearComando("SP_INSERT_LISTAEGRESOS");
             conectar.AsignarParametros("egrdetalle", strDetalle, DbType.String);
-            conectar.AsignarParametros("prvruc", strRuc, DbType.String);
-            conectar.AsignarParametros("prvautorizacion", strAutorizacion, DbType.String);
-            conectar.AsignarParametros("prvnombre", strNombre, DbType.String);
             conectar.AsignarParametros("egrclasificacion", strClasificacion, DbType.String);
             conectar.AsignarParametros("egrcantidad", intCantidad.ToString(), DbType.Int32);
             conectar.AsignarParametros("egrcunitario", dblCunitario.ToString(), DbType.Double);
             conectar.AsignarParametros("iva", dblIVA.ToString(), DbType.Double);
+            conectar.AsignarParametros("fecha", strFecha, DbType.String);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+        //in iva double, in mprid int, in cantidad double, in cunitario double)
+
+        public DataSet insertListaEgresosmp(double dblIva, int intMprid, double dblCantidad, double dblCunitario, int intEsDevolucion, string strFecha, string strDev)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_INSERT_LISTAEGRESOSMP");
+            conectar.AsignarParametros("iva", dblIva.ToString(), DbType.Double);
+            conectar.AsignarParametros("mprid", intMprid.ToString(), DbType.Int32);
+            conectar.AsignarParametros("cantidad", dblCantidad.ToString(), DbType.Double);
+            conectar.AsignarParametros("cunitario", dblCunitario.ToString(), DbType.Double);
+            conectar.AsignarParametros("esdevolucion", intEsDevolucion.ToString(), DbType.Int32);
+            conectar.AsignarParametros("fecha", strFecha, DbType.String);
+            conectar.AsignarParametros("dev", strDev, DbType.String);
             DataSet dsDatos = conectar.EjecutarDataset();
             conectar.Desconectar();
             return dsDatos;
         }
 
+
         public DataSet selectUltimaListaEgresos()
         {
             conectar.Conectar();
             conectar.CrearComando("SP_SELECT_ULTIMALISTAEGRESOS");
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+        public DataSet selectUltimaListaEgresosMP()
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_SELECT_ULTIMALISTAEGRESOSMP");
             DataSet dsDatos = conectar.EjecutarDataset();
             conectar.Desconectar();
             return dsDatos;
@@ -207,7 +232,7 @@ namespace SAC_Enci_Proyecto
             return dsDatos;
         }
 
-  
+
         public DataSet selectOPporItemID(int intItemid)
         {
             conectar.Conectar();
@@ -237,7 +262,18 @@ namespace SAC_Enci_Proyecto
             conectar.Desconectar();
             return dsDatos;
         }
-  
+        public DataSet insertDetalleOrdenMP(int intOprid, int intLmpid)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_INSERT_DETALLEORDENMP");
+            conectar.AsignarParametros("oprid", intOprid.ToString(), DbType.Int32);
+            conectar.AsignarParametros("lmpid", intLmpid.ToString(), DbType.Int32);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+
+
         public DataSet insertDetallePedido(int intPedid, int intItemid)
         {
             conectar.Conectar();
@@ -278,6 +314,16 @@ namespace SAC_Enci_Proyecto
             conectar.Desconectar();
             return dsDatos;
         }
+
+        public DataSet selectTotalPorMPOP(int intOprid)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_SELECT_TOTALPORMPOP");
+            conectar.AsignarParametros("oprid", intOprid.ToString(), DbType.Int32);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
         public DataSet selectTotalPorPedido(int intPedid)
         {
             conectar.Conectar();
@@ -298,8 +344,6 @@ namespace SAC_Enci_Proyecto
             conectar.Desconectar();
             return dsDatos;
         }
-
-        //`SP_UPDATE_ORDENPRODUCCION`(in oprid int, in total double, in cunitario double)
 
         public DataSet updateOP(int intOprid, double dblTotal, double intCunitario)
         {
@@ -322,9 +366,6 @@ namespace SAC_Enci_Proyecto
             conectar.Desconectar();
             return dsDatos;
         }
-
-        //PROCEDURE `SP_SELECT_REPORTETOTALGASTOS`(in inicio varchar(45), in fin varchar(45), in clasificacion int)
-
 
         public DataSet selectReporteTotalGastos(string strFechaInicio, string strFechaFin, string strClasificacion)
         {
@@ -403,7 +444,21 @@ namespace SAC_Enci_Proyecto
         }
 
 
-        public DataSet updateLegreso(string strEgrdetalle, string strPrvruc, string strPrvautorizacion, string strPrvnombre, int intEgrcantidad, double dblEgrcostounitario, double dblIva, string strEgrclasificacion, int intLegrid, int intPrvid)
+        public DataSet updateLegreso(string strEgrdetalle, int intEgrcantidad, double dblEgrcostounitario, double dblIva, string strEgrclasificacion, int intLegrid)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_UPDATE_LEGRESO");
+            conectar.AsignarParametros("egrdetalle", strEgrdetalle.ToString(), DbType.String);
+            conectar.AsignarParametros("egrcantidad", intEgrcantidad.ToString(), DbType.Int32);
+            conectar.AsignarParametros("egrcostounitario", dblEgrcostounitario.ToString(), DbType.Double);
+            conectar.AsignarParametros("iva", dblIva.ToString(), DbType.Double);
+            conectar.AsignarParametros("egrclasificacion", strEgrclasificacion, DbType.String);
+            conectar.AsignarParametros("legrid", intLegrid.ToString(), DbType.Int32);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+        public DataSet updateLegresomp(string strEgrdetalle, string strPrvruc, string strPrvautorizacion, string strPrvnombre, int intEgrcantidad, double dblEgrcostounitario, double dblIva, int intLegrid, int intPrvid)
         {
             conectar.Conectar();
             conectar.CrearComando("SP_UPDATE_LEGRESO");
@@ -414,7 +469,6 @@ namespace SAC_Enci_Proyecto
             conectar.AsignarParametros("egrcantidad", intEgrcantidad.ToString(), DbType.Int32);
             conectar.AsignarParametros("egrcostounitario", dblEgrcostounitario.ToString(), DbType.Double);
             conectar.AsignarParametros("iva", dblIva.ToString(), DbType.Double);
-            conectar.AsignarParametros("egrclasificacion", strEgrclasificacion, DbType.String);
             conectar.AsignarParametros("legrid", intLegrid.ToString(), DbType.Int32);
             conectar.AsignarParametros("prvid", intPrvid.ToString(), DbType.Int32);
             DataSet dsDatos = conectar.EjecutarDataset();
@@ -428,6 +482,16 @@ namespace SAC_Enci_Proyecto
             conectar.CrearComando("SP_DELETE_LEGRESO");
 
             conectar.AsignarParametros("legrid", intLegrid.ToString(), DbType.Int32);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+        public DataSet deleteLegresoMP(int intLmpid)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_DELETE_LEGRESOMP");
+
+            conectar.AsignarParametros("lmpid", intLmpid.ToString(), DbType.Int32);
             DataSet dsDatos = conectar.EjecutarDataset();
             conectar.Desconectar();
             return dsDatos;
@@ -467,7 +531,7 @@ namespace SAC_Enci_Proyecto
         }
 
         ///////20230527/////////////
-        
+
         public DataSet insertProveedor(string strRUC, string strAutorizacion, string strNombre)
         {
             conectar.Conectar();
@@ -479,7 +543,6 @@ namespace SAC_Enci_Proyecto
             conectar.Desconectar();
             return dsDatos;
         }
-        // mprcodigo varchar(45), mprdetalle varchar(45), in prvid int
 
         public DataSet insertMateriaPrima(string strCodigo, string strDetalle, int prvId)
         {
@@ -494,25 +557,41 @@ namespace SAC_Enci_Proyecto
         }
 
         ///KARDEX///
-        ///in mprid int, in cantidad double, in cunitario double
-        public DataSet insertEntradaKardex(int intMprid, double dblCantidad, double dblCunitario)
+        public DataSet insertEntradaKardex(int intMprid, double dblCantidad, double dblCunitario, string strFecha)
         {
             conectar.Conectar();
             conectar.CrearComando("SP_INSERT_ENTRADA_KARDEX");
             conectar.AsignarParametros("mprid", intMprid.ToString(), DbType.Int32);
             conectar.AsignarParametros("cantidad", dblCantidad.ToString(), DbType.Double);
             conectar.AsignarParametros("cunitario", dblCunitario.ToString(), DbType.Double);
+            conectar.AsignarParametros("fecha", strFecha, DbType.String);
             DataSet dsDatos = conectar.EjecutarDataset();
             conectar.Desconectar();
             return dsDatos;
         }
 
-        public DataSet insertSalidaKardex(int intMprid, double dblCantidad)
+        public DataSet insertSalidaKardex(int intMprid, double dblCantidad, string strFecha, int intOprid)
         {
             conectar.Conectar();
             conectar.CrearComando("SP_INSERT_SALIDA_KARDEX");
             conectar.AsignarParametros("mprid", intMprid.ToString(), DbType.Int32);
             conectar.AsignarParametros("cantidad", dblCantidad.ToString(), DbType.Double);
+            conectar.AsignarParametros("fecha", strFecha, DbType.String);
+            conectar.AsignarParametros("oprid", intMprid.ToString(), DbType.Int32);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+
+        public DataSet insertDevolucionKardex(int intMprid, double dblCantidad, double dblCunitario, string strFecha, int intOprid)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_INSERT_DEVOLUCION_KARDEX");
+            conectar.AsignarParametros("mprid", intMprid.ToString(), DbType.Int32);
+            conectar.AsignarParametros("cantidad", dblCantidad.ToString(), DbType.Double);
+            conectar.AsignarParametros("cunitario", dblCunitario.ToString(), DbType.Double);
+            conectar.AsignarParametros("fecha", strFecha, DbType.String);
+            conectar.AsignarParametros("oprid", intMprid.ToString(), DbType.Int32);
             DataSet dsDatos = conectar.EjecutarDataset();
             conectar.Desconectar();
             return dsDatos;
@@ -533,6 +612,27 @@ namespace SAC_Enci_Proyecto
             conectar.Conectar();
             conectar.CrearComando("SP_SELECT_MATERIAPRIMAPORCODIGO");
             conectar.AsignarParametros("mprcodigo", strMprCodigo, DbType.String);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+
+        public DataSet updateMateriaPrima(int intMprid, double dblCantidad)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_UPDATE_MATERIAPRIMA");
+            conectar.AsignarParametros("cantidad", dblCantidad.ToString(), DbType.Double);
+            conectar.AsignarParametros("mprid", intMprid.ToString(), DbType.Int32);
+            DataSet dsDatos = conectar.EjecutarDataset();
+            conectar.Desconectar();
+            return dsDatos;
+        }
+
+        public DataSet selectListaEgresosMPPorID(int intLmpid)
+        {
+            conectar.Conectar();
+            conectar.CrearComando("SP_SELECT_LISTAEGRESOSMPPORLMPID");
+            conectar.AsignarParametros("lmpid", intLmpid.ToString(), DbType.Int32);
             DataSet dsDatos = conectar.EjecutarDataset();
             conectar.Desconectar();
             return dsDatos;

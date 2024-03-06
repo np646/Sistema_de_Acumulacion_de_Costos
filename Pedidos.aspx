@@ -22,6 +22,13 @@
             width: 80px;
             height: 25px;
         }
+        .auto-style6 {
+            text-align: left;
+            width: 79px;
+        }
+        .auto-style7 {
+            width: 79px;
+        }
     </style>
 </head>
 <body>
@@ -67,7 +74,7 @@
                                     <label>ID-RUC:</label>
                                 </td>
                                 <td style="width:80px;">
-                                    <asp:TextBox ID="txtIdentificacion" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
+                                    <asp:TextBox ID="txtIdentificacion" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning" ReadOnly="True"></asp:TextBox>
                                 </td>
                                 <td style="width:auto;">
                                     <label>Cantidad:</label>
@@ -114,6 +121,12 @@
                                 <td class="auto-style5">
                                     <asp:TextBox ID="txtDescripcion" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
                                 </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td style="width:auto;">
@@ -129,13 +142,13 @@
                     <div class="text-center">
                         <asp:Button ID="btnRegresar" runat="server" OnClick="btnRegresar_Click" Text="Regresar" class="btn btn-warning"/>
                         <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" class="btn btn-warning" OnClick="btnIngresar_Click" />
-                        <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" class="btn btn-warning" style="height: 29px"/>
+                        <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" class="btn btn-warning"/>
                         <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" class="btn btn-warning"/>
                     </div>
 
                     <center>
                         <br />
-                        <asp:GridView ID="GridView1" runat="server" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" AutoGenerateColumns="False" DataKeyNames="itm_id" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CellSpacing="2" OnRowCommand="GridView1_RowCommand">
+                        <asp:GridView ID="GridView1" runat="server" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" AutoGenerateColumns="False" DataKeyNames="itm_id" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CellSpacing="2" OnRowCommand="GridView1_RowCommand" AllowPaging="True">
                             <Columns>
                                 <asp:BoundField DataField="itm_id" HeaderText="#" InsertVisible="False" ReadOnly="True" SortExpression="itm_id" />
                                 <asp:BoundField DataField="cli_nombre" HeaderText="Cliente" SortExpression="cli_nombre" />
@@ -148,9 +161,15 @@
                                 <asp:BoundField DataField="itm_numpedido" HeaderText="Pedido" SortExpression="itm_numpedido" />
                                 <asp:BoundField DataField="itm_descripcion" HeaderText="Descripción" SortExpression="itm_descripcion" />
                                 <asp:BoundField DataField="itm_total" HeaderText="Total" SortExpression="itm_total" />
-                                <asp:ButtonField ButtonType="Button" CommandName="ver" Text="Orden" ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card"/>
-                                <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar" ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card"/>
-                                <asp:ButtonField ButtonType="Button" CommandName="eliminar" Text="Eliminar" ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card"/>
+                                <asp:ButtonField ButtonType="Button" CommandName="ver" Text="Hoja de costos" ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
+<ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
+                                </asp:ButtonField>
+                                <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar" ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
+<ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
+                                </asp:ButtonField>
+                                <asp:ButtonField ButtonType="Button" CommandName="eliminar" Text="Eliminar" ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
+<ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
+                                </asp:ButtonField>
                             </Columns>
                             <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
                             <HeaderStyle BackColor="" Font-Bold="True" ForeColor="White" />
@@ -172,15 +191,21 @@
                         <br />
                         <br />
 
+                    </center>
+
                         <table class="w-100">
                             <tr>
-                                <td><label>TOTAL:</label></td>
-                                <td>
+                                <td class="auto-style6"><label>TOTAL:</label></td>
+
+                    <center>
+                                <td class="text-start">
+                                    <em>
                                     <asp:TextBox ID="txtTotal" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
+                                    </em>
                                 </td>
                             </tr>
                             <tr>
-                                <td>&nbsp;</td>
+                                <td class="auto-style7">&nbsp;</td>
                                 <td>&nbsp;</td>
                             </tr>
                             

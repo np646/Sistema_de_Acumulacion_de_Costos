@@ -25,12 +25,9 @@ namespace SAC_Enci_Proyecto
         protected void btnMostrarV_Click(object sender, EventArgs e)
         {
             string tipo = ddlTipo.SelectedItem.Value;
-
             DataSet dsDatos = datos.selectReporteGastos(txtFechaInicio.Text, txtFechaFinalizacion.Text, tipo);
             GridView1.DataBind();
-
             DataSet dsDatos2 = datos.selectReporteTotalGastos(txtFechaInicio.Text, txtFechaFinalizacion.Text, tipo);
-
             if (dsDatos2.Tables[0].Rows.Count > 0)
             {
                txtTotal.Text = dsDatos2.Tables[0].Rows[0]["suma"].ToString();
@@ -69,6 +66,10 @@ namespace SAC_Enci_Proyecto
             GridView1.RenderControl(htmltextwrtter);
             Response.Write(strwritter.ToString());
             Response.End();
+        }
+
+        protected void btnImprimir_Click(object sender, EventArgs e)
+        {
 
         }
     }

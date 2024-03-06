@@ -24,11 +24,8 @@ namespace SAC_Enci_Proyecto
             if (e.CommandName == "ver")
             {
                 int crow = Convert.ToInt32(e.CommandArgument.ToString());
-
                 Session["pedid"] = GridView1.Rows[crow].Cells[0].Text;
                 Session["pedido"] = GridView1.Rows[crow].Cells[0].Text;
-                // txtitemid.Text = Session["itemid"].ToString();
-
                 Response.Redirect("Pedidos.aspx");
             }
         }

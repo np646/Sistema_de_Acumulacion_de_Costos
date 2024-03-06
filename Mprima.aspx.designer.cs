@@ -24,6 +24,33 @@ namespace SAC_Enci_Proyecto
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// ddlMateriaPrima control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMateriaPrima;
+
+        /// <summary>
+        /// SqlDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+
+        /// <summary>
+        /// btnBuscarMpr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarMpr;
+
+        /// <summary>
         /// txtDetalle control.
         /// </summary>
         /// <remarks>
@@ -42,15 +69,6 @@ namespace SAC_Enci_Proyecto
         protected global::System.Web.UI.WebControls.TextBox txtRuc;
 
         /// <summary>
-        /// txtAutorizacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAutorizacion;
-
-        /// <summary>
         /// txtProveedor control.
         /// </summary>
         /// <remarks>
@@ -60,13 +78,13 @@ namespace SAC_Enci_Proyecto
         protected global::System.Web.UI.WebControls.TextBox txtProveedor;
 
         /// <summary>
-        /// ddlTipo control.
+        /// txtCantidadBodega control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipo;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadBodega;
 
         /// <summary>
         /// txtCantidad control.
@@ -87,40 +105,13 @@ namespace SAC_Enci_Proyecto
         protected global::System.Web.UI.WebControls.TextBox txtCostoUnitario;
 
         /// <summary>
-        /// ddlMateriaPrima control.
+        /// txtFecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMateriaPrima;
-
-        /// <summary>
-        /// SqlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
-
-        /// <summary>
-        /// cbIVA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbIVA;
-
-        /// <summary>
-        /// txtIVA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIVA;
+        protected global::System.Web.UI.WebControls.TextBox txtFecha;
 
         /// <summary>
         /// txtPrvid control.
@@ -148,15 +139,6 @@ namespace SAC_Enci_Proyecto
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMprid;
-
-        /// <summary>
-        /// btnBuscarMpr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarMpr;
 
         /// <summary>
         /// btnRegresar control.

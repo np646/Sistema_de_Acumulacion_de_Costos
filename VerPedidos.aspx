@@ -39,7 +39,7 @@
                 <asp:Button ID="btnRegresar" runat="server" Class="btn btn-warning" OnClick="btnRegresar_Click" Text="Regresar" />
             </div>
 
-            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="itm_id" DataSourceID="SqlDataSource2" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" CellSpacing="2">
+            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="itm_id" DataSourceID="SqlDataSource2" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" CellSpacing="2" AllowPaging="True">
                 <Columns>
                     <asp:BoundField DataField="itm_id" HeaderText="#" InsertVisible="False" ReadOnly="True" SortExpression="itm_id" />
                     <asp:BoundField DataField="cli_nombre" HeaderText="Cliente" SortExpression="cli_nombre" Visible="False" />
@@ -51,8 +51,10 @@
                     <asp:BoundField DataField="itm_fechafinalizacion" HeaderText="Fecha fin" SortExpression="itm_fechafinalizacion" />
                     <asp:BoundField DataField="itm_numpedido" HeaderText="Pedido" SortExpression="itm_numpedido" />
                     <asp:BoundField DataField="itm_descripcion" HeaderText="Descripción" SortExpression="itm_descripcion" />
-                    <asp:ButtonField CommandName="Select" HeaderText="Orden de producción" Text="Ver" 
-                        ButtonType="Button" ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card"/>
+                    <asp:ButtonField CommandName="Select" HeaderText="Hoja de costos" Text="Ver" 
+                        ButtonType="Button" ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
+<ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
+                    </asp:ButtonField>
                 </Columns>
                 <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
                 <HeaderStyle BackColor="goldenrod" Font-Bold="True" ForeColor="White" />
@@ -65,7 +67,7 @@
                 <SortedDescendingHeaderStyle BackColor="#93451F" />
             </asp:GridView>
                 <br />
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="ped_id" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CellSpacing="2" OnRowCommand="GridView1_RowCommand">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="ped_id" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CellSpacing="2" OnRowCommand="GridView1_RowCommand" AllowPaging="True">
                 <Columns>
                     <asp:BoundField DataField="ped_id" HeaderText="#" InsertVisible="False" ReadOnly="True" SortExpression="ped_id" />
                     <asp:BoundField DataField="cli_nombre" HeaderText="Cliente" SortExpression="cli_nombre" />

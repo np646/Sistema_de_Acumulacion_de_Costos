@@ -11,6 +11,8 @@ namespace SAC_Enci_Proyecto
     public partial class IngresarProveedor : System.Web.UI.Page
     {
         Acc datos = new Acc();
+        string mensaje = "Ingrese los datos correctamente.";
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,19 +25,26 @@ namespace SAC_Enci_Proyecto
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            try
+            if (txtRUC.Text != "" && txtNombre.Text != "")
             {
-                DataSet dsDatos = datos.insertProveedor(txtRUC.Text, txtAutorizacion.Text, txtNombre.Text);
-
-                if (dsDatos.Tables[0].Rows.Count > 0)
+                try
                 {
-                    System.Windows.Forms.MessageBox.Show("Se ha ingresado el proveedor.");
-                    
+                    DataSet dsDatos = datos.insertProveedor(txtRUC.Text, txtAutorizacion.Text, txtNombre.Text);
+                    if (dsDatos.Tables[0].Rows.Count > 0)
+                    {
+                        txtRUC.Text = txtNombre.Text = txtAutorizacion.Text = "";
+                        mensaje = "alert('Se ha ingresado el proveedor.');";
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
+                    }
+                }
+                catch
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
                 }
             }
-            catch
+            else
             {
-                System.Windows.Forms.MessageBox.Show("Ingrese correctamente los datos");
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
             }
         }
     }

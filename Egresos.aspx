@@ -17,7 +17,25 @@
         .auto-style1 {
             text-align: justify
         }
-    </style>
+        .auto-style4 {
+            width: 131px;
+        }
+        .auto-style5 {
+            width: 65px;
+        }
+        .auto-style6 {
+            width: auto;
+            height: 25px;
+        }
+        .auto-style7 {
+            width: 100px;
+            height: 25px;
+        }
+        .auto-style8 {
+            width: 131px;
+            height: 25px;
+        }
+        </style>
 </head>
 <body>
     <div class="auto-style1">
@@ -53,38 +71,16 @@
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td style="width:auto;">
-                                    <label>Detalle:</label>
-                                </td>
-                                <td style="width:100px;">
+                                <td>
+                                    <label>Detalle:</label></td>
+                                <td>
                                     <asp:TextBox ID="txtDetalle" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
                                 </td>
-                                <td style="width:auto;">
-                                    <label>ID-RUC:</label>
-                                </td>
-                                <td style="width:100px;">
-                                    <asp:TextBox ID="txtRuc" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
-                                </td>
-                                <td style="width:auto;">
-                                    <label>Autorización:</label>
-                                </td>
-                                <td style="width:100px;">
-                                    <asp:TextBox ID="txtAutorizacion" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
-                                </td>
-                                <td style="width:auto;">
-                                    <label>Proveedor:</label>
-                                </td>
-                                <td style="width:100px;">
-                                    <asp:TextBox ID="txtProveedor" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width:auto;">
+                                <td class="auto-style6">
                                     <label>Tipo:</label>
                                 </td>
-                                <td style="width:100px;">
+                                <td class="auto-style7">
                                     <asp:DropDownList ID="ddlTipo" runat="server" Width="188px" Class="border-end-0 border-start-0 border-top-0 border-warning">
-                                        <asp:ListItem Value="MP">Materia prima directa</asp:ListItem>
                                         <asp:ListItem Value="MO">Mano de obra directa</asp:ListItem>
                                         <asp:ListItem Value="CIF">Costos indirectos de fabricación</asp:ListItem>
                                         <asp:ListItem Value="GA">Gastos administrativos</asp:ListItem>
@@ -92,22 +88,18 @@
                                         <asp:ListItem Value="GF">Gastos financieros</asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
-                                <td style="width:auto;">
+                                <td class="auto-style6">
                                     <label>Cantidad:</label>
                                 </td>
-                                <td style="width:100px;">
+                                <td class="auto-style7">
                                     <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
                                 </td>
-                                <td style="width:auto;">
+                                <td class="auto-style6">
                                     <label>Costo unitario:</label>
                                 </td>
-                                <td style="width:100px;">
+                                <td class="auto-style8">
                                     <asp:TextBox ID="txtCostoUnitario" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox>
                                 </td>
-                                <td style="width:auto;">
-                                    &nbsp;</td>
-                                <td style="width:100px;">
-                                    &nbsp;</td>
                             </tr>
                             <tr>
                                 <td style="width:auto;">
@@ -118,15 +110,34 @@
                                 <td style="width:auto;">
                                     <label>IVA:</label></td>
                                 <td style="width:100px;">
-                                    <asp:TextBox ID="txtIVA" runat="server"  Class="border-end-0 border-start-0 border-top-0 border-warning">0</asp:TextBox>
+                                    <asp:TextBox ID="txtIVA" runat="server"  Class="border-end-0 border-start-0 border-top-0 border-warning" ReadOnly="True">0</asp:TextBox>
                                 </td>
+                                <td style="width:auto;">
+                                    <label>Fecha:</label></td>
+                                <td class="auto-style4">
+                                    <asp:TextBox ID="txtFecha" Class="border-end-0 border-start-0 border-top-0 border-warning" runat="server" placeholder="aaaa/mm/dd" TextMode="Date"></asp:TextBox>
+                                </td>
+                                <td class="auto-style5">
+                                    &nbsp;</td>
+                                <td style="width:100px;">
+                                    &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="width:auto;">
+                                    &nbsp;</td>
+                                <td style="width:100px;">
+                                    &nbsp;</td>
+                                <td style="width:auto;">
+                                    &nbsp;</td>
+                                <td style="width:100px;">
+                                    &nbsp;</td>
                                 <td style="width:auto;">
                                     <asp:TextBox ID="txtPrvid" runat="server" Visible="False"></asp:TextBox>
                                 </td>
-                                <td style="width:100px;">
+                                <td class="auto-style4">
                                     <asp:TextBox ID="txtLegrid" runat="server" Visible="False"></asp:TextBox>
                                 </td>
-                                <td style="width:auto;">
+                                <td class="auto-style5">
                                     &nbsp;</td>
                                 <td style="width:100px;">
                                     &nbsp;</td>
@@ -135,32 +146,27 @@
                     </table>
                     <div class="text-center mb-3">
                         <asp:Button ID="btnRegresar" runat="server" OnClick="btnRegresar_Click" class="btn btn-warning" Text="Regresar" />
-                        <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" class="btn btn-warning" OnClick="btnIngresar_Click"/>
+                        <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" class="btn btn-warning" OnClick="btnIngresar_Click" />
                         <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" class="btn btn-warning" Text="Guardar" />
                         <asp:Button ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" class="btn btn-warning" Text="Cancelar" />
                     </div>
                     
                     <center>
-                    <asp:GridView ID="GridView1" runat="server" CellPadding="3" AutoGenerateColumns="False" DataKeyNames="legr_id" DataSourceID="BDD_ENCI" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CellSpacing="2" OnRowCommand="GridView1_RowCommand">
+                    <asp:GridView ID="GridView1" runat="server" CellPadding="3" AutoGenerateColumns="False" DataKeyNames="legr_id" DataSourceID="BDD_ENCI" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CellSpacing="2" OnRowCommand="GridView1_RowCommand" AllowPaging="True">
                         <Columns>
-                            <asp:BoundField DataField="legr_id" HeaderText="#" InsertVisible="False" ReadOnly="True" SortExpression="legr_id" />
+                            <asp:BoundField DataField="legr_id" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="legr_id" />
                             <asp:BoundField DataField="legr_fecha" HeaderText="Fecha" SortExpression="legr_fecha" />
                             <asp:BoundField DataField="egr_detalle" HeaderText="Detalle" SortExpression="egr_detalle" />
-                            <asp:BoundField DataField="prv_ruc" HeaderText="ID-RUC" SortExpression="prv_ruc" />
-                            <asp:BoundField DataField="prv_autorizacion" HeaderText="Autorización" SortExpression="prv_autorizacion" />
-                            <asp:BoundField DataField="prv_nombre" HeaderText="Proveedor" SortExpression="prv_nombre" />
-                            <asp:BoundField DataField="egr_clasificacion" HeaderText="Tipo" SortExpression="egr_clasificacion" />
+                            <asp:BoundField DataField="egr_clasificacion" HeaderText="Clasificación" SortExpression="egr_clasificacion" />
                             <asp:BoundField DataField="egr_cantidad" HeaderText="Cantidad" SortExpression="egr_cantidad" />
                             <asp:BoundField DataField="egr_costounitario" HeaderText="Costo unitario" SortExpression="egr_costounitario" />
                             <asp:BoundField DataField="egr_costototal" HeaderText="Costo total" SortExpression="egr_costototal" />
                             <asp:BoundField DataField="iva_valor" HeaderText="IVA" SortExpression="iva_valor" />
                             <asp:BoundField DataField="egr_total" HeaderText="Total" SortExpression="egr_total" />
-                            <asp:ButtonField CommandName="editar" Text="Editar" ButtonType="Button"
-                                ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
+                            <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar"  ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
 <ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
                             </asp:ButtonField>
-                            <asp:ButtonField CommandName="eliminar" Text="Eliminar" ButtonType="Button" 
-                                ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
+                            <asp:ButtonField ButtonType="Button" CommandName="eliminar" Text="Eliminar"  ControlStyle-BackColor="white" ControlStyle-ForeColor="black" ControlStyle-CssClass="border-warning card">
 <ControlStyle BackColor="White" CssClass="border-warning card" ForeColor="Black"></ControlStyle>
                             </asp:ButtonField>
                         </Columns>
@@ -175,7 +181,11 @@
                         <SortedDescendingHeaderStyle BackColor="#93451F" />
                     </asp:GridView>
 
-                    <asp:SqlDataSource ID="BDD_ENCI" runat="server" ConnectionString="<%$ ConnectionStrings:bdd_enciConnectionString %>" ProviderName="<%$ ConnectionStrings:bdd_enciConnectionString.ProviderName %>" SelectCommand="SP_SELECT_LISTAEGRESOS" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="BDD_ENCI" runat="server" ConnectionString="<%$ ConnectionStrings:bdd_enciConnectionString %>" ProviderName="<%$ ConnectionStrings:bdd_enciConnectionString.ProviderName %>" SelectCommand="SP_SELECT_LISTAEGRESOPOROP" SelectCommandType="StoredProcedure">
+                        <SelectParameters>
+                            <asp:SessionParameter Name="oprid" SessionField="oprid" Type="Int32" />
+                        </SelectParameters>
+                        </asp:SqlDataSource>
                     </center>
                 </div>
                 

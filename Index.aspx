@@ -22,19 +22,21 @@
 
 </head>
 <body>
+
     <form id="form1" runat="server">
-    <div class="headers">
-        <nav id="superior" class="container-fluid p-3">
-            <img src="images/logo2.png" alt="logo">
+    
+        <div class="headers">
+            <nav id="superior" class="container-fluid p-3">
+                <img src="images/logo2.png" alt="logo">
             
-            <p class="auto-style1"><strong>Sistema de Acumulaci&oacute;n de Costos</strong></p>
-        </nav>
-        <div id="main" class="inner-header flex">
-            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" class="btn btn-6" OnClick="btnIngresar_Click"/>
-         </div>
-    </div>
-    <!--Waves Container-->
-        <div>
+                <p class="auto-style1"><strong>Sistema de Acumulaci&oacute;n de Costos</strong></p>
+            </nav>
+            <div id="main" class="inner-header flex">
+                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" class="btn btn-6" OnClick="btnIngresar_Click"/>
+                </div>
+        </div>
+
+        <div><!--Waves Container-->
             <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
                 <defs>
@@ -48,16 +50,14 @@
                     <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
                 </g>
             </svg>
-        </div>
-        <!--Waves end-->
-        
-
-
-    <footer>
-        <div class="content flex">
-            <h3>Sistema de Acumulaci&oacute;n de Costos</h3>
-        </div>
-    </footer>
-        </form>
+        </div> <!--Waves end-->
+    
+        <footer>
+            <div class="content flex">
+                <h3 style="color:goldenrod">Sistema de Acumulaci&oacute;n de Costos</h3><br />
+            
+            </div>
+        </footer>
+    </form>
 </body>
 </html>

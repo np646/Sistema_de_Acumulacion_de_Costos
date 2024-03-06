@@ -13,15 +13,12 @@ namespace SAC_Enci_Proyecto
         Acc datos = new Acc();
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
         {
-            /*Session["ultimopedidoid"] = GridView1.SelectedRow.Cells[7].Text;
-            Session["itemid"] = GridView1.SelectedRow.Cells[1].Text;
-
-            Response.Redirect("Orden.aspx");*/
+            //ahora se utiliza rowcommand
         }
 
         protected void btnRegresar_Click(object sender, EventArgs e)
@@ -33,22 +30,18 @@ namespace SAC_Enci_Proyecto
         {
             if (e.CommandName == "eliminar")
             {
-
-
                 int crow = Convert.ToInt32(e.CommandArgument.ToString());
-
                 string oprid = GridView1.Rows[crow].Cells[0].Text;
                 DataSet dsDatos = datos.deleteOrdenProduccion(Int32.Parse(oprid));
-
-                System.Windows.Forms.MessageBox.Show("Se ha eliminado el item.");
                 GridView1.DataBind();
+                string mensaje = mensaje = "alert('Se ha eliminado el item.');";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
             }
             else if (e.CommandName == "ver")
             {
                 int crow = Convert.ToInt32(e.CommandArgument.ToString());
                 Session["ultimopedidoid"] = GridView1.Rows[crow].Cells[7].Text;
                 Session["itemid"] = GridView1.Rows[crow].Cells[1].Text;
-
                 Response.Redirect("Orden.aspx");
             }
         }

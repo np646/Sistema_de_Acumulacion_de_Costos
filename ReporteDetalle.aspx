@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="col-auto mb-3 mt-5 ms-5">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="egr_id" DataSourceID="SqlDataSource1" BackColor="goldenrod" BorderColor="white" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="egr_id" DataSourceID="SqlDataSource1" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" AllowPaging="True">
                     <Columns>
                         <asp:BoundField DataField="egr_id" HeaderText="Egreso" InsertVisible="False" ReadOnly="True" SortExpression="egr_id" />
                         <asp:BoundField DataField="egr_detalle" HeaderText="Detalle" SortExpression="egr_detalle" />

@@ -39,5 +39,10 @@ namespace SAC_Enci_Proyecto
         {
             Response.Redirect("VerMateriaPrima.aspx");
         }
+
+        protected void btnIngresarPrv_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("IngresarProveedor.aspx");
+        }
     }
 }

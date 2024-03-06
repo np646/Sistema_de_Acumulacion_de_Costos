@@ -30,8 +30,8 @@
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td><label style="font-weight:600; color:goldenrod;">Valor acutal: </label></td>
-                                <td><asp:TextBox ID="txtIVAActual" Class="border-end-0 border-start-0 border-top-0 border-warning" runat="server" ></asp:TextBox></td>
+                                <td><label style="font-weight:600; color:goldenrod;">Valor actual: </label></td>
+                                <td><asp:TextBox ID="txtIVAActual" Class="border-end-0 border-start-0 border-top-0 border-warning" runat="server" ReadOnly="True" ></asp:TextBox></td>
                             </tr>
                             <tr>
                                 <td><br /> </td>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class=" mb-3 mt-5 ms-3">
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="iva_id" DataSourceID="SqlDataSource1" BackColor="goldenrod" BorderColor="white" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="iva_id" DataSourceID="SqlDataSource1" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" AllowPaging="True">
                             <Columns>
                                 <asp:BoundField DataField="iva_id" HeaderText="#" InsertVisible="False" ReadOnly="True" SortExpression="iva_id" />
                                 <asp:BoundField DataField="iva_valor" HeaderText="Valor" SortExpression="iva_valor" />

@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="Images/logo2.png" />
-    <title>Cliente</title>
+    
+
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
@@ -18,6 +19,7 @@
             text-align: justify
         }
     </style>
+    <title>Cliente</title>
 </head>
 <body>
         <form id="form1" runat="server">
@@ -55,14 +57,25 @@
                                     <td><asp:TextBox ID="txtNombre" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning"></asp:TextBox></td>
                                     <td><asp:Button ID="btnIngresar" runat="server" OnClick="btnIngresar_Click1" Class="btn btn-warning" Text="Ingresar nuevo cliente" /><br /></td>
                                 </tr>
+                                <tr>
+                                <td><label>Seleccione la fecha del pedido:</label></td>
+                                <td><asp:TextBox  TextMode="Date" ID="txtFecha" runat="server" Class="border-end-0 border-start-0 border-top-0 border-warning" placeholder="aaaa/mm/dd"></asp:TextBox></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                            </tr>
                             </tbody>
                         </table>       
                         <asp:TextBox ID="txtCliid" runat="server" Visible="false"></asp:TextBox>
-                    &nbsp;<asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Class="btn btn-warning" Text="Guardar" Visible="False" />
+                    &nbsp;
+                         <div class="text-center mb-3">
+                             <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Class="btn btn-warning" Text="Guardar" Visible="False" />
+                             </div>
+                        <br />
                     </div>
                     <div class="mt-3 justify-content-center" style="display:flex">
                         <div class="col-auto text-center table-responsive " style="margin:1% 3% 2% 3%;">
-                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="cli_id" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Style="text-align: center" CellSpacing="2" OnRowCommand="GridView1_RowCommand">
+                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="cli_id" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Style="text-align: center" CellSpacing="2" OnRowCommand="GridView1_RowCommand" AllowPaging="True" AllowSorting="True">
                                 <Columns>
                                     <asp:BoundField DataField="cli_id" HeaderText="#" InsertVisible="False" ReadOnly="True" SortExpression="cli_id" />
                                     <asp:BoundField DataField="cli_identificacion" HeaderText="Identificación" SortExpression="cli_identificacion" />

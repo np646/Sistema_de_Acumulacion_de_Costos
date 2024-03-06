@@ -17,7 +17,6 @@ namespace SAC_Enci_Proyecto
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("VerMateriaPrima.aspx");
-            
         }
     }
 }

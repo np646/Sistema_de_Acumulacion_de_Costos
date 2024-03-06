@@ -27,7 +27,7 @@
         <section>
             <br /><br /><br />
             <center>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="goldenrod" BorderColor="white" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="reg_id" DataSourceID="SqlDataSource1" CellSpacing="2">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="Goldenrod" BorderColor="White" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="reg_id" DataSourceID="SqlDataSource1" CellSpacing="2" AllowPaging="True">
                     <Columns>
                         <asp:BoundField DataField="reg_id" HeaderText="#" InsertVisible="False" ReadOnly="True" SortExpression="reg_id" />
                         <asp:BoundField DataField="usu_nombre" HeaderText="Usuario" SortExpression="usu_nombre" />

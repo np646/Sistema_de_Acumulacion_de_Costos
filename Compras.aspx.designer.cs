@@ -11,7 +11,7 @@ namespace SAC_Enci_Proyecto
 {
 
 
-    public partial class Egresos
+    public partial class Compras
     {
 
         /// <summary>
@@ -33,13 +33,22 @@ namespace SAC_Enci_Proyecto
         protected global::System.Web.UI.WebControls.TextBox txtDetalle;
 
         /// <summary>
-        /// ddlTipo control.
+        /// txtRuc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipo;
+        protected global::System.Web.UI.WebControls.TextBox txtRuc;
+
+        /// <summary>
+        /// txtProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProveedor;
 
         /// <summary>
         /// txtCantidad control.
@@ -60,6 +69,15 @@ namespace SAC_Enci_Proyecto
         protected global::System.Web.UI.WebControls.TextBox txtCostoUnitario;
 
         /// <summary>
+        /// txtFecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFecha;
+
+        /// <summary>
         /// cbIVA control.
         /// </summary>
         /// <remarks>
@@ -76,15 +94,6 @@ namespace SAC_Enci_Proyecto
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIVA;
-
-        /// <summary>
-        /// txtFecha control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFecha;
 
         /// <summary>
         /// txtPrvid control.

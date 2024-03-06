@@ -11,26 +11,31 @@ namespace SAC_Enci_Proyecto
     public partial class CrearCuenta : System.Web.UI.Page
     {
         Acc datos = new Acc();
+        string mensaje = "Ingrese los datos correctamente.";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
         {
-            DataSet dsDatos = datos.insertUsuario(txtUsuario.Text, txtContrasena.Text);
-
-            if (dsDatos.Tables[0].Rows.Count > 0)
+            if (txtUsuario.Text != "" && txtContrasena.Text != "")
             {
-                System.Windows.Forms.MessageBox.Show("Se ha registrado al usuario.");
-                Response.Redirect("IniciarSesion.aspx");
-
+                DataSet dsDatos = datos.insertUsuario(txtUsuario.Text, txtContrasena.Text);
+                if (dsDatos.Tables[0].Rows.Count > 0)
+                {
+                    mensaje = "alert('Se ha registrado al usuario.'); window.location='IniciarSesion.aspx';";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
+                }
             }
             else
             {
-                System.Windows.Forms.MessageBox.Show("Ingrese los datos correctamente.");
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
             }
-
         }
 
         protected void btnAtras_Click(object sender, EventArgs e)

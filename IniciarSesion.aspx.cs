@@ -22,16 +22,15 @@ namespace SAC_Enci_Proyecto
             if (dsDatos.Tables[0].Rows.Count > 0)
             {
                 Session["usuario"] = txtUsuario.Text;
-
-
                 dsDatos = datos.insertRegistro(txtUsuario.Text);
-
                 Response.Redirect("Menu.aspx");
             }
             else
             {
-                System.Windows.Forms.MessageBox.Show("Usuario o contraseña incorrectos.");
                 txtContrasena.Text = txtUsuario.Text = "";
+
+                string mensaje = "alert('Usuario o contraseña incorrectos.');";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", mensaje, true);
             }
 
         }
